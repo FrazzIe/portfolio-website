@@ -1,0 +1,35 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+    entry: CollectionEntry<'experience'>
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+---
+
+<article>
+    <div>
+        <h5>{entry.data.role}</h5>
+        <small>{entry.data.org}</small>
+    </div>
+    
+    <span>
+        {entry.data.startDate.toLocaleDateString('en-GB', { month: 'short', year: 'numeric' })} 
+        &mdash; 
+        {entry.data.endDate?.toLocaleDateString('en-GB', { month: 'short', year: 'numeric' }) ?? 'Present'}
+    </span>
+</article>
+
+<slot><Content/></slot>
+
+<style>
+    article {
+        display: flex; 
+        align-items: center; 
+        justify-content: space-between;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+</style>

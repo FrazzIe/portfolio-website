@@ -1,0 +1,26 @@
+---
+import { getCollection } from "astro:content";
+import Tag from "./Tag.astro";
+
+const skills = await getCollection('skills');
+---
+
+<article>
+    {
+        skills
+            .sort((a, b) => a.data.order - b.data.order)
+            .flatMap(i => i.data.skill)
+            .map(skill => <Tag>{skill}</Tag>)
+    }
+
+</article>
+
+
+<style>
+    article {
+        display: flex; 
+        gap: 1rem;
+        flex-wrap: wrap; 
+        justify-content: flex-start;
+    }
+</style>

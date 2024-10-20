@@ -1,0 +1,25 @@
+---
+import Link from '@components/Link.astro';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+    entry: CollectionEntry<'projects'>
+}
+
+const { entry } = Astro.props;
+---
+
+<article>
+    <li><Link href={`/projects/${entry.slug}`}>{entry.data.name}</Link>: {entry.data.blurb}</li>
+    <span>{entry.data.startDate.toLocaleDateString('en-GB', { month: 'short', year: 'numeric' })}</span>
+</article>
+
+<style>
+    article {
+        display: flex; 
+        align-items: center; 
+        justify-content: space-between;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+</style>

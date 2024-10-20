@@ -1,0 +1,32 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+    entry: CollectionEntry<'education'>
+}
+
+const { entry } = Astro.props;
+---
+
+<article>
+    <div>
+        <h5>{entry.data.award}</h5>
+        <small>{entry.data.school}</small>
+    </div>
+
+    <span>
+        {entry.data.startDate.toLocaleDateString('en-GB', { month: 'short', year: 'numeric' })} 
+        &mdash; 
+        {entry.data.endDate.toLocaleDateString('en-GB', { month: 'short', year: 'numeric' })}
+    </span>
+</article>
+
+<style>
+    article {
+        display: flex; 
+        align-items: center; 
+        justify-content: space-between;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+</style>

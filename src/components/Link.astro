@@ -1,0 +1,53 @@
+---
+
+import { Icon } from 'astro-icon/components'
+interface Props {
+    label?: string;
+    href: string;
+    icon?: string;
+    external?: boolean;
+    btn?: boolean;
+}
+
+const { label, href, icon, external, btn } = Astro.props;
+---
+
+<a href={href} class:list={[ { btn: btn } ]}>
+    {icon && <Icon name={icon} size={32} ></Icon>}
+    <slot>{label}</slot>
+    {external && <Icon name="ri:external-link-line"></Icon>}
+    {!external && <Icon name="ri:links-fill" size={12}></Icon>}
+</a>
+
+
+<style>
+    a {        
+        display: inline-flex;
+        align-items: center;
+        gap: 0.25rem;
+        color: var(--text-color);
+    }
+
+    a:hover { color: var(--highlighted-text-color); }
+
+    .btn {
+        width: max-content;
+        padding: 0.5rem 0.75rem;
+
+        border: 1px solid var(--primary-color);
+        border-radius: 3px;
+        
+        background-color: var(--secondary-color);
+
+        text-decoration: none;
+
+        color: var(--text-color);
+    }
+
+    .btn:hover {
+        background-color: var(--secondary-color);
+        border: 1px solid var(--text-color);
+
+        color: var(--text-color);
+    }
+</style>

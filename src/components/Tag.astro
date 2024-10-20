@@ -1,0 +1,21 @@
+---
+interface Props {
+    label?: string;
+}
+
+const { label } = Astro.props;
+---
+
+<article>
+    <slot>{label}</slot>
+</article>
+
+<style>
+	article {
+		padding: 0.3rem 0.5rem;
+		border: 1px solid var(--primary-color);
+		max-width: max-content;
+		background-color: var(--secondary-color);
+        font-size: 85%
+	}
+</style>

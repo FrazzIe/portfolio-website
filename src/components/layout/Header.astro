@@ -1,0 +1,40 @@
+---
+import NavItem from './NavItem.astro';
+import Navbar from './Navbar.astro';
+
+interface Props {
+
+}
+
+const {  } = Astro.props;
+---
+
+<header>
+    <span>
+        <slot name="title"></slot>
+    </span>
+
+    <Navbar>
+        <slot name="nav"></slot>
+    </Navbar>
+
+    <slot name="action"></slot>
+</header>
+
+<style>
+    header {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 1rem;
+        padding: 0.5rem 1rem;
+        /* border-bottom: 0.25rem solid var(--secondary-color); */
+        padding-bottom: 2rem;
+
+        span {
+            font-size: 2.5rem;
+            margin-right: auto;
+            color: var(--primary-color);
+        }
+    }
+</style>

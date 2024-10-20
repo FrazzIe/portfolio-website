@@ -1,0 +1,7 @@
+{
+    "$schema": "../../../.astro/collections/education.schema.json",
+    "award": "BSc (Hons) Computing",
+    "school": "Glasgow Caledonian University",
+    "startDate": "2019-09-01",
+    "endDate": "2021-11-01"
+}

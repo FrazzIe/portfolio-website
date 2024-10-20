@@ -1,0 +1,17 @@
+{
+    "$schema": "../../../.astro/collections/skills.schema.json",
+    "skill": [
+        "CI/CD",
+        "OOP",
+        "Docker",
+        "Kubernetes",
+        "Git",
+        "JIRA",
+        "Confluence",
+        "Miro",
+        "Figma",
+        "Linux",
+        "English"
+    ],
+    "order": 2
+}

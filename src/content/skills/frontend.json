@@ -1,0 +1,18 @@
+{
+    "$schema": "../../../.astro/collections/skills.schema.json",
+    "skill": [
+        "JavaScript",
+        "TypeScript",
+        "HTML",
+        "CSS",
+        "SCSS",
+        "Angular",
+        "Vue",
+        "Svelte",
+        "Astro",
+        "Karma",
+        "Jasmine",
+        "Cypress"
+    ],
+    "order": 0
+}

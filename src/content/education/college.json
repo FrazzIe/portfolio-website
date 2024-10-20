@@ -1,0 +1,7 @@
+{
+    "$schema": "../../../.astro/collections/education.schema.json",
+    "award": "HND Computing Software Development",
+    "school": "Glasgow Clyde College",
+    "startDate": "2017-09-01",
+    "endDate": "2019-07-01"
+}

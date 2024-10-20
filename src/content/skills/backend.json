@@ -1,0 +1,17 @@
+
+{
+    "$schema": "../../../.astro/collections/skills.schema.json",
+    "skill": [
+        "C#",
+        ".NET Core",
+        "ASP.NET",
+        "EFCore",
+        "XUnit",
+        "MSSQL",
+        "MongoDB",
+        "Postgres",
+        "Lua",
+        "Node.js"        
+    ],
+    "order": 1
+}

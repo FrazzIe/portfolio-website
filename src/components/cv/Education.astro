@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content';
+import { shortDate } from '@helpers/date';
 
 interface Props {
     entry: CollectionEntry<'education'>
@@ -15,9 +16,9 @@ const { entry } = Astro.props;
     </div>
 
     <span>
-        {entry.data.startDate.toLocaleDateString('en-GB', { month: 'short', year: 'numeric' })} 
+        {shortDate(entry.data.startDate)} 
         &mdash; 
-        {entry.data.endDate.toLocaleDateString('en-GB', { month: 'short', year: 'numeric' })}
+        {shortDate(entry.data.endDate)} 
     </span>
 </article>
 

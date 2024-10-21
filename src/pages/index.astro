@@ -43,13 +43,16 @@ const projects = await getCollection('projects');
         }
 	</Section>
 
-    <Section title="Projects" gap='0.25rem'>
-        {
-            projects
-                .sort((a, b) => a.data.startDate.valueOf() > b.data.startDate.valueOf() ? -1 : 1)
-                .slice(0, 9)
-                .map(e => <Project entry={e}></Project>)
-        }
+    <Section title="Projects">
+        <div class="projects">
+            {
+                projects
+                    .sort((a, b) => a.data.startDate.valueOf() > b.data.startDate.valueOf() ? -1 : 1)
+                    .slice(0, 9)
+                    .map(e => <Project entry={e}></Project>)
+            }
+        </div>
+
 	</Section>
 
     <Section title="About">
@@ -64,4 +67,9 @@ const projects = await getCollection('projects');
 </Layout>
 
 <style>
+    .projects {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+    }
 </style>

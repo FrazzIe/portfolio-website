@@ -41,6 +41,17 @@ const { title, description, banner } = Astro.props;
 	:root {
 		@import url('https://fonts.googleapis.com/css?family=Inter:700|Inter:400');
 
+		color-scheme: dark;
+
+		--text-color: #eaf2f5;
+		--highlighted-text-color: #1d8cb4;
+
+		--primary-color: #1d8cb4;
+		--secondary-color: #27537e;
+		--accent-color: #7192b2;
+
+		--background-color: #141d28;
+
 		*, :before, :after {
 			box-sizing: border-box;
 			margin: 0;
@@ -96,7 +107,7 @@ const { title, description, banner } = Astro.props;
 		}
 	}
 
-	@media (prefers-color-scheme: light) {
+	/* @media (prefers-color-scheme: light) {
 		:root {
 			color-scheme: light;
 
@@ -124,5 +135,5 @@ const { title, description, banner } = Astro.props;
 
 			--background-color: #141d28;
 		}
-	}
+	} */
 </style>

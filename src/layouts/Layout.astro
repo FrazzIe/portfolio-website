@@ -7,7 +7,7 @@ import Banner from '@components/layout/Banner.astro';
 interface Props {
 	title: string;
 	description: string;
-	banner: string;
+	banner?: string;
 }
 
 const { title, description, banner } = Astro.props;
@@ -26,12 +26,12 @@ const { title, description, banner } = Astro.props;
 
 	<body>
 		{banner && <Banner>{banner}</Banner>}
-		<!-- <Header>
+		<Header>
 			<span slot="title">fwatt.dev</span>
 			<NavItem slot="nav" label="Home" href="/"></NavItem>
 			<NavItem slot="nav" label="Projects" href="/projects"></NavItem>
 			<NavItem slot="nav" label="CV" href="/cv"></NavItem>
-		</Header> -->
+		</Header>
 		<main><slot /></main>
 		<Footer></Footer>
 	</body>

@@ -1,0 +1,74 @@
+---
+import Hero from '@components/Hero.astro';
+import Link from '@components/Link.astro';
+import Section from '@components/Section.astro';
+import SkillList from '@components/SkillList.astro';
+import Education from '@components/cv/Education.astro';
+import Experience from '@components/cv/Experience.astro';
+import Project from '@components/cv/Project.astro';
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+
+const experiences = await getCollection('experience');
+const education = await getCollection('education');
+const projects = await getCollection('projects');
+---
+
+<Layout 
+    title="fwatt | CV"
+    description="A web-based version of Fraser Watt's Curriculum Vitae">
+	<Hero 
+		title="Fraser Watt" 
+		subtitle='Full-stack Developer'
+        socials>
+		<Link href="mailto:fwatt@proton.me?subject=Job%20Opportunity" external icon="ri:mail-fill">Mail</Link>
+		<Link href="https://linkedin.com/in/fraser-w" external icon="ri:linkedin-box-fill">Linkedin</Link>
+		<Link href="https://git.fwatt.dev" external icon="ri:github-fill">GitHub</Link>
+	</Hero>
+
+    <Section title="Skills">
+        <SkillList></SkillList>
+    </Section>
+
+	<Section title="Experience">
+		{experiences.map(e => <Experience entry={e}></Experience>)}
+	</Section>
+
+    <Section title="Education">
+		{
+            education
+                .sort((a, b) => a.data.endDate.valueOf() > b.data.endDate.valueOf() ? -1 : 1)
+                .map(e => <Education entry={e}></Education>)
+        }
+	</Section>
+
+    <Section title="Projects">
+        <div class="projects">
+            {
+                projects
+                    .sort((a, b) => a.data.startDate.valueOf() > b.data.startDate.valueOf() ? -1 : 1)
+                    .slice(0, 9)
+                    .map(e => <Project entry={e}></Project>)
+            }
+        </div>
+
+	</Section>
+
+    <Section title="About">
+        <p style="text-align: justify;">
+            I am a full stack developer looking to take the next step in 
+			my career and further advance my skills in the industry. I hope to contribute 
+			to new or existing projects with a team of like-minded individuals. 
+			I also hope to provide value to projects by applying my skills and 
+			dedicating time to improve my capabilities both technically and professionally.
+        </p>
+    </Section>
+</Layout>
+
+<style>
+    .projects {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+</style>

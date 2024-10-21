@@ -10,7 +10,7 @@ const { title, subtitle, socials } = Astro.props;
 <section class="hero">
     <div class="hero-content">
         <article class="hero-intro">
-            <h1>{title}</h1>
+            <h1 class="title">{title}</h1>
             <div class="subtitle">{subtitle}</div>
         </article>
         
@@ -35,13 +35,17 @@ const { title, subtitle, socials } = Astro.props;
         flex-direction: row;
         gap: 1rem;
         align-items: center;
-        justify-content: space-between;
         flex-wrap: wrap;
     }
 
 	.hero-intro {
 		position: relative;
 		max-width: fit-content;
+        margin: auto;
+
+        .title {
+            text-align: center;
+        }
 
 		.subtitle {
 			padding: 0.3rem 0.5rem;
@@ -55,7 +59,14 @@ const { title, subtitle, socials } = Astro.props;
 		display: flex;
 		gap: 1rem;
 		padding: 1rem;
+        margin: auto;
+        flex-wrap: wrap;
+        justify-content: center;
 	}
+
+    .hero-social > * {
+        flex: 1;
+    }
 
     /* .hero-about {
         text-align: justify;

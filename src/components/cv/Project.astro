@@ -10,8 +10,7 @@ const { entry } = Astro.props;
 ---
 
 <article>
-    <!-- <li><Link href={`/projects/${entry.slug}`}>{entry.data.name}</Link>: {entry.data.blurb}</li> -->
-    <li><u>{entry.data.name}</u>: {entry.data.blurb}</li>
+    <li><Link href={`/projects/${entry.slug}`}>{entry.data.name}</Link>: {entry.data.blurb}</li>
     <small>{entry.data.startDate.toLocaleDateString('en-GB', { month: 'short', year: 'numeric' })}</small>
 </article>
 

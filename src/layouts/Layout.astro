@@ -39,6 +39,15 @@ const { title, description, banner } = Astro.props;
 
 <style is:global>
 	:root {
+		
+		--default-font-size: font-size: 100%; /* 16px */
+		--h1-font-size: 4.210rem; /* 67.36px */
+		--h2-font-size: 3.158rem; /* 50.56px */
+		--h3-font-size: 2.369rem; /* 37.92px */
+		--h4-font-size: 1.777rem; /* 28.48px */
+		--h5-font-size: 1.333rem; /* 21.28px */
+		--small-font-size: 0.750rem; /* 12px */
+
 		@import url('https://fonts.googleapis.com/css?family=Inter:700|Inter:400');
 
 		*, :before, :after {
@@ -63,18 +72,16 @@ const { title, description, banner } = Astro.props;
 			font-weight: 700;
 		}
 
-		html { font-size: 100%; } /* 16px */
-		h1 { font-size: 4.210rem; /* 67.36px */ }
-		h2 { font-size: 3.158rem; /* 50.56px */ }
-		h3 { font-size: 2.369rem; /* 37.92px */ }
-		h4 { font-size: 1.777rem; /* 28.48px */ }
-		h5 { font-size: 1.333rem; /* 21.28px */ }
-		small { font-size: 0.750rem; /* 12px */ }
 
+		html { font-size: var(--default-font-size); }
+		h1 { font-size: var(--h1-font-size); }
+		h2 { font-size: var(--h2-font-size); }
+		h3 { font-size: var(--h3-font-size); }
+		h4 { font-size: var(--h4-font-size); }
+		h5 { font-size: var(--h5-font-size); }
+		small { font-size: var(--small-font-size); }
 		
-		header, 
-		footer, 
-		main {
+		header, footer, main {
 			width: 100%;
 			max-width: 58rem;
 			margin-left: auto;

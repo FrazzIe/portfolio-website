@@ -36,15 +36,23 @@ const { title, subtitle, socials } = Astro.props;
         gap: 1rem;
         align-items: center;
         flex-wrap: wrap;
+        justify-content: space-evenly;
+
+        @media only screen and (min-width: 806px) {
+            justify-content: space-between;
+        }
     }
 
 	.hero-intro {
 		position: relative;
 		max-width: fit-content;
-        margin: auto;
 
         .title {
-            text-align: center;
+            font-size: var(--h2-font-size);
+
+            @media only screen and (min-width: 415px) {
+                font-size: var(--h1-font-size);
+            }
         }
 
 		.subtitle {
@@ -59,7 +67,6 @@ const { title, subtitle, socials } = Astro.props;
 		display: flex;
 		gap: 1rem;
 		padding: 1rem;
-        margin: auto;
         flex-wrap: wrap;
         justify-content: center;
 	}

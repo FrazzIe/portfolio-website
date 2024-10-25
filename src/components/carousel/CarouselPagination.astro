@@ -41,9 +41,8 @@ const { pages } = Astro.props;
             
 
             &.active { background-color: var(--white-color); }
-            &:focus-visible { 
-                outline: var(--accent-color) auto 2px;
-            }
+            &:hover { background-color: rgba(var(--white-color-rgb), 0.9); }
+            &:focus-visible { outline: var(--accent-color) auto 2px; }
         }
     }
 </style>

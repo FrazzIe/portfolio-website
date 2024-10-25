@@ -1,0 +1,48 @@
+---
+import { Icon } from "astro-icon/components";
+
+---
+
+<article class="indicators">
+    <button class="left" carousel-indicator-left aria-label="Previous"><Icon name="ri:arrow-left-s-line" size={50}></Icon></button>
+    <button class="right" carousel-indicator-right aria-label="Next"><Icon name="ri:arrow-right-s-line" size={50}></Icon></button>
+</article>
+
+<style>
+    .indicators {
+        position: absolute;
+
+        display: flex;
+        justify-content: space-between;
+
+        width: 100%;
+        height: 100%;
+
+        top: 50%;
+        transform: translateY(-50%);
+
+        button {
+            all: unset;
+
+            cursor: pointer;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 5rem;
+
+            &.left { background: linear-gradient(-90deg, transparent 5%, rgba(0,0,0,0.4) 100%); }
+            &.right { background: linear-gradient(90deg, transparent 5%, rgba(0,0,0,0.4) 100%); }
+
+            svg { color: rgba(var(--white-color-rgb), 0.6); }
+
+            &:hover {
+                svg { color: var(--white-color) }
+            }
+
+            &:focus-visible { 
+                outline: var(--white-color) auto 2px;
+            }
+        }
+    }
+</style>

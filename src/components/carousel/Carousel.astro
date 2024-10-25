@@ -1,0 +1,31 @@
+---
+import { type CarouselItemProps } from './CarouselItem.astro';
+import CarouselContainer from './CarouselContainer.astro';
+import CarouselIndicators from './CarouselIndicators.astro';
+import CarouselPagination from './CarouselPagination.astro';
+
+interface Props {
+    items: CarouselItemProps[];
+}
+
+const { items } = Astro.props;
+---
+
+<script src="./carousel.component.ts"></script>
+
+<f-carousel>
+    <CarouselContainer items={items}></CarouselContainer>
+    <CarouselIndicators></CarouselIndicators>
+    <CarouselPagination pages={items.length}></CarouselPagination>
+</f-carousel>
+
+<style>
+    f-carousel {
+        position: relative;
+        background-color: var(--accent-color);
+
+        height: 30em;
+        display: flex;
+        flex-direction: column;
+    }
+</style>

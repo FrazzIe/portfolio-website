@@ -59,7 +59,16 @@ const projects = defineCollection({
 		lastUpdated: z
 			.string()
 			.or(z.date())
-			.transform(v => new Date(v))
+			.transform(v => new Date(v)),
+		images: z
+			.array(z
+				.object({
+					src: z.string(),
+					alt: z.string().optional()
+				})
+				.or(z.string())
+				.transform(v => typeof v === 'string' ? { src: v } : v)
+			).optional()
 	}),
 });
 

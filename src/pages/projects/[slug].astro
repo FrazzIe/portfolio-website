@@ -22,11 +22,25 @@ const { Content } = await entry.render();
 <Layout title={`Projects | ${entry.data.name}`} description={entry.data.blurb}>
     <Title title={entry.data.name}></Title>
 
-    {entry.data.images && <Carousel items={entry.data.images}></Carousel>}    
+    {entry.data.images && <Carousel items={entry.data.images}></Carousel>}
+
+    {entry.data.links && 
+        <section class="links">
+            {entry.data.links.live && <Link target={entry.data.links.live} external btn>Visit Website</Link>}
+            {entry.data.links.demo && <Link target={entry.data.links.demo} external btn>Demo</Link>}
+            {entry.data.links.source && <Link target={entry.data.links.source} external btn>Source</Link>}
+            {entry.data.links.additional?.map(link => <Link {...link}></Link>)}
+        </section>
+    }
     
     <Content></Content>
 </Layout>
 
 <style>
-
+    .links {
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
 </style>

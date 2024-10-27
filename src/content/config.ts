@@ -50,8 +50,6 @@ const projects = defineCollection({
 	schema: z.object({
 		name: z.string(),
 		blurb: z.string(),
-		source: z.string().optional(),
-		demo: z.string().optional(),
 		startDate: z
 			.string()
 			.or(z.date())
@@ -68,7 +66,25 @@ const projects = defineCollection({
 				})
 				.or(z.string())
 				.transform(v => typeof v === 'string' ? { src: v } : v)
-			).optional()
+			)
+			.optional(),
+		links: z
+			.object({
+				source: z.string().optional(),
+				demo: z.string().optional(),
+				live: z.string().optional(),
+				additional: z
+					.array(z
+						.object({
+							label: z.string(),
+							target: z.string(),					
+							icon: z.string().optional(),
+							external: z.boolean().optional().default(true),
+							btn: z.boolean().optional().default(true)
+						})
+					).optional()
+			})
+			.optional()
 	}),
 });
 

@@ -1,0 +1,32 @@
+---
+import Carousel from "@components/carousel/Carousel.astro";
+import Link from "@components/Link.astro";
+import Title from "@components/Title.astro";
+import Layout from "@layouts/Layout.astro";
+import { Icon } from "astro-icon/components";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+    const items = await getCollection('projects');
+
+    return items.map(entry => ({
+        params: { slug: entry.slug },
+        props: { entry },
+    }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+---
+
+<Layout title={`Projects | ${entry.data.name}`} description={entry.data.blurb}>
+    <Title title={entry.data.name}></Title>
+
+    {entry.data.images && <Carousel items={entry.data.images}></Carousel>}    
+    
+    <Content></Content>
+</Layout>
+
+<style>
+
+</style>

@@ -3,16 +3,16 @@
 import { Icon } from 'astro-icon/components'
 interface Props {
     label?: string;
-    href: string;
+    target: string;
     icon?: string;
     external?: boolean;
     btn?: boolean;
 }
 
-const { label, href, icon, external, btn } = Astro.props;
+const { label, target, icon, external, btn } = Astro.props;
 ---
 
-<a href={href} class:list={[ { btn: btn } ]}>
+<a href={target} class:list={[ { btn: btn } ]}>
     {icon && <Icon name={icon} size={32} ></Icon>}
     <slot>{label}</slot>
     {external && <Icon name="ri:external-link-line"></Icon>}

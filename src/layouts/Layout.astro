@@ -48,6 +48,7 @@ const { title, description, banner } = Astro.props;
 		--primary-color: #1d8cb4;
 		--secondary-color: #27537e;
 		--accent-color: #7192b2;
+		--background-color: #141d28;
 
 		--white-color: #fff;
 		--white-color-rgb: 255, 255, 255;
@@ -55,16 +56,17 @@ const { title, description, banner } = Astro.props;
 		--black-color: #000;
 		--black-color-rgb: 0, 0, 0;
 
-		--background-color: #141d28;
-
 		/* font */
-		--default-font-size: font-size: 100%; /* 16px */
+		--default-font-size: 100%; /* 16px */
 		--h1-font-size: 4.210rem; /* 67.36px */
 		--h2-font-size: 3.158rem; /* 50.56px */
 		--h3-font-size: 2.369rem; /* 37.92px */
 		--h4-font-size: 1.777rem; /* 28.48px */
 		--h5-font-size: 1.333rem; /* 21.28px */
 		--small-font-size: 0.750rem; /* 12px */
+
+		/* border */
+		--b-radius: 3px;
 
 		@import url('https://fonts.googleapis.com/css?family=Inter:700|Inter:400');
 
@@ -124,42 +126,12 @@ const { title, description, banner } = Astro.props;
 	/* @media (prefers-color-scheme: light) {
 		:root {
 			color-scheme: light;
-
-			--text-color: #06121e;
-			--highlighted-text-color: #1d8cb4;
-
-			--primary-color: #1d8cb4;
-			--secondary-color: #27537e;
-			--accent-color: #7192b2;
-
-			--white-color: #fff;
-			--white-color-rgb: 255, 255, 255;
-
-			--black-color: #000;
-			--black-color-rgb: 0, 0, 0;
-
-			--background-color: #141d28;
 		}		
 	}
 
 	@media (prefers-color-scheme: dark) {
 		:root {
 			color-scheme: dark;
-
-			--text-color: #eaf2f5;
-			--highlighted-text-color: #1d8cb4;
-
-			--primary-color: #1d8cb4;
-			--secondary-color: #27537e;
-			--accent-color: #7192b2;
-
-			--white-color: #fff;
-			--white-color-rgb: 255, 255, 255;
-
-			--black-color: #000;
-			--black-color-rgb: 0, 0, 0;
-
-			--background-color: #141d28;
 		}
 	} */
 </style>

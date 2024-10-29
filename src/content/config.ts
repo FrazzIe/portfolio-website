@@ -62,7 +62,8 @@ const projects = defineCollection({
 			.array(z
 				.object({
 					src: z.string(),
-					alt: z.string().optional()
+					alt: z.string().optional(),
+					fit: z.string().optional()
 				})
 				.or(z.string())
 				.transform(v => typeof v === 'string' ? { src: v } : v)
@@ -78,11 +79,20 @@ const projects = defineCollection({
 						.object({
 							label: z.string(),
 							target: z.string(),					
-							icon: z.string().optional(),
+							icon: z
+								.object({
+									name: z.string(),
+									size: z.number().or(z.string()).optional(),
+									width: z.number().or(z.string()).optional(),
+									height: z.number().or(z.string()).optional()
+								})
+								.or(z.string())
+								.optional(),
 							external: z.boolean().optional().default(true),
-							btn: z.boolean().optional().default(true)
+							btn: z.boolean().optional().default(true),
 						})
-					).optional()
+					)
+					.optional()
 			})
 			.optional()
 	}),

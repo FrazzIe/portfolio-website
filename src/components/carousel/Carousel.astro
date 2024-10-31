@@ -14,20 +14,27 @@ const { items } = Astro.props;
 <script src="./carousel.component.ts"></script>
 
 <f-carousel>
-    <CarouselContainer items={items}></CarouselContainer>
-    <CarouselIndicators></CarouselIndicators>
+    <div class="content">
+        <CarouselIndicators slot="indicators"></CarouselIndicators>
+        <CarouselContainer items={items}></CarouselContainer>
+    </div>
+
     <CarouselPagination pages={items.length}></CarouselPagination>
 </f-carousel>
 
 <style>
     f-carousel {
         position: relative;
-        background-color: var(--black-color);
 
-        height: 28em;
         display: flex;
         flex-direction: column;
 
-        border-radius: var(--b-radius);
+        .content {
+            position: relative;
+            display: flex;
+            height: 14em;
+
+            border-radius: var(--b-radius);
+        }
     }
 </style>

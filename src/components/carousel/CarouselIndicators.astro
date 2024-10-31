@@ -3,10 +3,10 @@ import { Icon } from "astro-icon/components";
 
 ---
 
-<article class="indicators">
+<nav class="indicators">
     <button class="left" carousel-indicator-left aria-label="Previous"><Icon name="ri:arrow-left-s-line" size={50}></Icon></button>
     <button class="right" carousel-indicator-right aria-label="Next"><Icon name="ri:arrow-right-s-line" size={50}></Icon></button>
-</article>
+</nav>
 
 <style>
     .indicators {
@@ -32,8 +32,16 @@ import { Icon } from "astro-icon/components";
             width: 5rem;
             border-radius: var(--b-radius);
 
-            &.left { background: linear-gradient(-90deg, transparent 5%, rgba(0,0,0,0.2) 100%); }
-            &.right { background: linear-gradient(90deg, transparent 5%, rgba(0,0,0,0.2) 100%); }
+            &.left { background: linear-gradient(-90deg, transparent 8%, var(--black-color) 100%); }
+            &.right { background: linear-gradient(90deg, transparent 8%, var(--black-color) 100%); }
+
+            &.left, &.right {
+                transition: opacity 0.6s;
+                opacity: 0.3;
+
+                &:hover { opacity: 0.8; }
+                &:focus-visible { opacity: 1;}
+            }
 
             svg { color: rgba(var(--white-color-rgb), 0.6); }
 

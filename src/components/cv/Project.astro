@@ -11,7 +11,7 @@ const { entry } = Astro.props;
 ---
 
 <article>
-    <li><Link target={`/projects/${entry.slug}`}>{entry.data.name}</Link>: {entry.data.blurb}</li>
+    <li><Link target={`/projects/${entry.slug}`} type="internal">{entry.data.name}</Link>: {entry.data.blurb}</li>
     <small>{shortDate(entry.data.startDate)}</small>
 </article>
 

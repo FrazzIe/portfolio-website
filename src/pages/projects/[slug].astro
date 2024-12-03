@@ -26,9 +26,9 @@ const { Content } = await entry.render();
 
     {entry.data.links && 
         <section class="links">
-            {entry.data.links.live && <Link target={entry.data.links.live} external btn>Visit Website</Link>}
-            {entry.data.links.demo && <Link target={entry.data.links.demo} external btn>Demo</Link>}
-            {entry.data.links.source && <Link target={entry.data.links.source} external btn>Source</Link>}
+            {entry.data.links.live && <Link target={entry.data.links.live} type="external" btn>Visit Website</Link>}
+            {entry.data.links.demo && <Link target={entry.data.links.demo} type="external" btn>Demo</Link>}
+            {entry.data.links.source && <Link target={entry.data.links.source} type="external" btn>Source</Link>}
             {entry.data.links.additional?.map(link => <Link {...link}></Link>)}
         </section>
     }

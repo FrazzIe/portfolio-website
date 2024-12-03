@@ -63,7 +63,13 @@ const projects = defineCollection({
 				.object({
 					src: z.string(),
 					alt: z.string().optional(),
-					fit: z.string().optional()
+					fit: z
+						.union([
+							z.literal('contain'),
+							z.literal('cover'),
+							z.literal('fill')
+						])
+						.optional()
 				})
 				.or(z.string())
 				.transform(v => typeof v === 'string' ? { src: v } : v)
@@ -88,7 +94,13 @@ const projects = defineCollection({
 								})
 								.or(z.string())
 								.optional(),
-							external: z.boolean().optional().default(true),
+							type: z
+								.union([
+									z.literal('internal'),
+									z.literal('external')
+								])
+								.optional()
+								.default('external'),
 							btn: z.boolean().optional().default(true),
 						})
 					)

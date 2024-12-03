@@ -1,61 +1,47 @@
 ---
 
 import { Icon } from 'astro-icon/components'
+import type { IconOptions } from './IconOptions';
 
-interface LinkIconOptions {
-    name: string;
-    size?: string | number;
-    width?: string | number;
-    height?: string | number;
-}
+export interface LinkProps extends Props {};
 
 interface Props {
     label?: string;
     target: string;
-    icon?: string | LinkIconOptions;
-    external?: boolean;
+    icon?: string | IconOptions;
+    type?: 'internal' | 'external';
     btn?: boolean;
 }
 
-const { label, target, icon, external, btn } = Astro.props;
+const { label, target, icon, type, btn } = Astro.props;
 ---
 
 <a href={target} class:list={[ { btn: btn } ]}>
     {icon && (typeof icon === 'string' ? 
-        <Icon name={icon} size={32} ></Icon> :
+        <Icon name={icon} size={16} ></Icon> :
         <Icon {...icon} ></Icon>
     )}
     <slot>{label && label}</slot>
-    {external && <Icon name="ri:external-link-line"></Icon>}
-    {!external && label && <Icon name="ri:links-fill" size={12}></Icon>}
+    {type === 'internal' && <Icon name="ri:external-link-line"></Icon>}
+    {type === 'external' && <Icon name="ri:links-fill" size={12}></Icon>}
 </a>
 
 
 <style>
-    a {        
+    :host {
+        --link-highlight-color: var(--highlighted-text-color);
+    }
+
+    a {
         display: inline-flex;
         align-items: center;
         gap: 0.25rem;
         color: var(--text-color);
+
+        cursor: pointer;
     }
 
-    a:hover { color: var(--highlighted-text-color); }
+    a:hover:not(.btn) { color: var(--link-highlight-color); }
 
-    .btn {
-        width: max-content;
-        padding: 0.5rem 0.75rem;        
-        
-        border: 2px solid var(--accent-color);
-        border-radius: var(--b-radius);
-
-        background-color: var(--secondary-color);
-        color: var(--text-color);
-
-        text-decoration: none;        
-    }
-
-    .btn:hover {
-        border: 2px solid var(--primary-color);
-        color: var(--white-color);
-    }
+    .btn { text-decoration: none; }
 </style>

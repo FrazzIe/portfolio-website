@@ -1,0 +1,53 @@
+---
+import { Icon } from 'astro-icon/components';
+import type { IconOptions } from './IconOptions';
+
+interface Props {
+    label?: string;
+    icon?: string | IconOptions;
+    ariaLabel?: string;
+    id?: string;
+}
+
+const { label, icon, ariaLabel, id } = Astro.props;
+---
+
+<button id={id} class="btn" aria-label={ariaLabel}>
+    {icon && (typeof icon === 'string' ? 
+        <Icon name={icon} size={16} ></Icon> :
+        <Icon {...icon} ></Icon>
+    )}
+    <slot>{label && label}</slot>
+</button>
+
+<style is:global>
+    button {
+        border: none;
+
+        display: inline-flex;
+        align-items: center;
+        gap: 0.25rem;
+
+        &:focus-visible { outline: var(--accent-color) auto 2px; }
+    }
+
+    .btn {        
+        font-size: var(--default-font-size);
+        
+        &:hover {
+            border: 2px solid var(--primary-color);
+            color: var(--white-color);
+        }
+
+        width: max-content;
+        padding: 0.5rem;
+        
+        border: 2px solid var(--accent-color);
+        border-radius: var(--b-radius);
+
+        background-color: var(--secondary-color);
+        color: var(--text-color);
+
+        cursor: pointer;
+    }
+</style>

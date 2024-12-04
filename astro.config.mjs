@@ -7,9 +7,11 @@ export default defineConfig({
     site: 'https://fwatt.dev',
     integrations: [
         icon({
+            iconDir: "src/assets/icons",
             include: {
-                ri: ["*"]
+                ri: ["*"],
             }
         })
-    ]
+    ],
+
 });

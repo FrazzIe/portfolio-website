@@ -14,9 +14,17 @@ interface Props {
 }
 
 const { label, target, icon, type, btn } = Astro.props;
+
+const currentPath = Astro.url.pathname;
+const targetPath = target;
+
+const pathMatches = 
+    URL.canParse(targetPath) ? false :
+    currentPath === targetPath ? true 
+    : currentPath.startsWith(targetPath) && targetPath !==  '/';
 ---
 
-<a href={target} class:list={[ { btn: btn } ]}>
+<a href={target} class:list={[ { btn: btn, active: pathMatches } ]}>
     {icon && (typeof icon === 'string' ? 
         <Icon name={icon} size={16} ></Icon> :
         <Icon {...icon} ></Icon>

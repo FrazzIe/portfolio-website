@@ -81,8 +81,14 @@ const { navItems } = Astro.props;
         a {
             text-decoration: none;
             font-weight: 500;
+            
+            padding: 0.2rem 0;
+            border: 2px solid transparent;
+            border-width: 2px 0px;
 
-            --link-highlight-color: rgba(var(--white-color-rgb), 0.7);
+            &.active, &:hover {
+                border-bottom-color: var(--primary-color);
+            }
         }
     }
 
@@ -112,8 +118,6 @@ const { navItems } = Astro.props;
             max-height: 0;
             transition: max-height 0.25s ease-out;
 
-            background-color: var(--secondary-color);
-
             overflow: hidden;
             flex-direction: column;
             gap: 0;
@@ -126,8 +130,17 @@ const { navItems } = Astro.props;
             }
 
             a { 
-                padding: 1rem;
+                padding: .8rem;
+                border: none;
+
                 &:first-child { border-top: 1px solid var(--primary-color); }
+
+                border-left: 5px solid transparent;                
+
+                &.active, &:hover {                    
+                    border-left: 5px solid var(--primary-color);
+                    background: linear-gradient(-90deg, transparent 0%, var(--secondary-color) 100%);
+                }
             }
 
             button { margin: 1rem; }

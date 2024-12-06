@@ -3,6 +3,7 @@ name: VPN Blocker
 blurb: A plugin built in C++ for Cod4x servers to prevent usage of VPNs through an API
 startDate: '2021-05-01'
 lastUpdated: '2024-11-08'
+thumbnail: /src/assets/projects/vpn-blocker/example.webp
 images:
 - src: /src/assets/projects/vpn-blocker/example.webp
   alt: Example of message displayed to player

@@ -3,13 +3,14 @@ name: ResourceForge
 blurb: A website containing documentation for ResourceForge projects (character-selector)
 startDate: '2024-10-01'
 lastUpdated: '2024-11-08'
+thumbnail: /src/assets/projects/resourceforge-website/content.webp
 images:
-- src: '/src/assets/projects/resourceforge-website/content.webp'
-  alt: 'Overview of available documentation'
-- src: '/src/assets/projects/resourceforge-website/landing.webp' 
-  alt: 'Landing page'
-- src: '/src/assets/projects/resourceforge-website/sample.webp' 
-  alt: 'Sample extract of available documentation'
+- src: /src/assets/projects/resourceforge-website/content.webp
+  alt: Overview of available documentation
+- src: /src/assets/projects/resourceforge-website/landing.webp
+  alt: Landing page
+- src: /src/assets/projects/resourceforge-website/sample.webp
+  alt: Sample extract of available documentation
 links:
   live: https://resourceforge.net/
   source: https://github.com/ResourceForge/website

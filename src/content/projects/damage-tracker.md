@@ -3,13 +3,14 @@ name: Damage tracker
 blurb: Built with Lua for FiveM to track, log and extend player damage
 startDate: '2024-06-01'
 lastUpdated: '2024-11-08'
+thumbnail: /src/assets/projects/damage-tracker/server_logs.webp
 images:
-- src: '/src/assets/projects/damage-tracker/server_logs.webp'
-  alt: 'Console output logs for recent damage'
-- src: '/src/assets/projects/damage-tracker/grafana_loki_overview.webp' 
-  alt: 'Collection of logs ingested from Loki into Grafana'
-- src: '/src/assets/projects/damage-tracker/grafana_loki_single.webp' 
-  alt: 'View of rich metadata for single Loki/Grafana damage log'
+- src: /src/assets/projects/damage-tracker/server_logs.webp
+  alt: Console output logs for recent damage'
+- src: /src/assets/projects/damage-tracker/grafana_loki_overview.webp'
+  alt: Collection of logs ingested from Loki into Grafana
+- src: /src/assets/projects/damage-tracker/grafana_loki_single.webp'
+  alt: View of rich metadata for single Loki/Grafana damage log
 ---
 
 Began as a test project to see if it was possible to apply extra damage to a damage event. The main reason for this was to override headshot damage in [FiveM](https://fivem.net/) a modification for Grand Theft Auto 5 (GTA5).

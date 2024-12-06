@@ -58,6 +58,7 @@ const projects = defineCollection({
 			.string()
 			.or(z.date())
 			.transform(v => new Date(v)),
+		thumbnail: z.string(),
 		images: z
 			.array(z
 				.object({

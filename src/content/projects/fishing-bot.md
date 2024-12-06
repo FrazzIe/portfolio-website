@@ -3,6 +3,7 @@ name: Fishing bot
 blurb: C# WPF application that makes use of computer vision to automate actions in a game
 startDate: '2021-11-01'
 lastUpdated: '2024-11-08'
+thumbnail: /src/assets/projects/fishing-bot/fishing_bot_original_test_1.webp
 images:
 - src: /src/assets/projects/fishing-bot/fishing_bot_original_test_1.webp
   alt: Fishing bot overview from original tests

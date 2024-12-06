@@ -3,6 +3,7 @@ name: Weapon Damage Configurator
 blurb: Web configuration tool to test the damage of weapons in FiveM
 startDate: '2023-05-30'
 lastUpdated: '2024-11-09'
+thumbnail: /src/assets/projects/weapon-damage-configurator/weapon_test_results.webp
 images:
 - src: /src/assets/projects/weapon-damage-configurator/weapon_test_results.webp
   alt: Example of the results of a weapon damage test

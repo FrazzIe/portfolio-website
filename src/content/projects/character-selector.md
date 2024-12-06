@@ -3,6 +3,7 @@ name: Character selector
 blurb: Built with Lua & Angular to provide a polished and unique experience for FiveM
 startDate: '2024-08-01'
 lastUpdated: '2024-11-08'
+thumbnail: /src/assets/projects/character-selector/character_selection_1.webp
 images:
 - src: /src/assets/projects/character-selector/character_selection_1.webp
   alt: Character selection page

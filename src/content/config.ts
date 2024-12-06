@@ -106,7 +106,8 @@ const projects = defineCollection({
 					)
 					.optional()
 			})
-			.optional()
+			.optional(),
+		hidden: z.boolean().optional().default(false)
 	}),
 });
 

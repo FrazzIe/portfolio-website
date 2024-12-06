@@ -1,0 +1,49 @@
+---
+import Section from "@components/Section.astro";
+import Project from "@components/projects/Project.astro";
+import Layout from "@layouts/Layout.astro";
+import type { CollectionEntry } from "astro:content";
+import { getCollection } from "astro:content";
+
+const projectsByYear = (await getCollection('projects'))
+    .filter(p => !p.data.hidden)
+    .sort((a, b) => a.data.startDate.valueOf() > b.data.startDate.valueOf() ? -1 : 1)
+    .reduce((projectsByYear, project) => {
+        const year = project.data.startDate.getFullYear();
+
+        projectsByYear[year] ??= [];
+        projectsByYear[year][projectsByYear[year].length] = project;
+
+        return projectsByYear;
+    }, {} as Record<string, CollectionEntry<'projects'>[]>);
+---
+
+<Layout title={`Projects`} description={`All projects`}>
+    {Object.keys(projectsByYear)
+        .sort((a, b) => a < b ? 1 : -1)
+        .map(year =>
+            <Section title={year} class="projects" id={year}>
+                {projectsByYear[year].map(p => <Project entry={p}></Project>)}
+            </Section>
+        )
+    }
+</Layout>
+
+<style>
+    .projects {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-flow: dense;
+        gap: 0.5rem;
+
+        h2:first-child { 
+            grid-column: span 2;
+            margin-bottom: 0.5rem;
+        }
+
+        @media only screen and (max-width: 768px) {
+            grid-template-columns: 1fr;
+            :first-child { grid-column: 1; }
+        }
+    }
+</style>

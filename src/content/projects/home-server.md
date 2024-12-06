@@ -3,8 +3,13 @@ name: Home Server
 blurb: Docker compose infrastructure for personal use homelab server
 startDate: '2024-10-01'
 lastUpdated: '2024-11-09'
+thumbnail: /src/assets/projects/home-server/layout.webp
+images:
+- src: /src/assets/projects/home-server/layout.webp
+  alt: Simplified layout of home server setup
 links:
   source: https://github.com/FrazzIe/home-server
+
 ---
 
 Personal use homelab where I locally host all my infrastructure with TrueNAS-Scale, Docker compose & Dockge.

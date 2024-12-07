@@ -15,11 +15,11 @@ const { items } = Astro.props;
 
 <f-carousel>
     <div class="content">
-        <CarouselIndicators slot="indicators"></CarouselIndicators>
+        {items.length > 1 && <CarouselIndicators slot="indicators"></CarouselIndicators>}
         <CarouselContainer items={items}></CarouselContainer>
     </div>
 
-    <CarouselPagination pages={items.length}></CarouselPagination>
+    {items.length > 1 && <CarouselPagination pages={items.length}></CarouselPagination>}
 </f-carousel>
 
 <style>
@@ -32,7 +32,7 @@ const { items } = Astro.props;
         .content {
             position: relative;
             display: flex;
-            height: 14em;
+            max-height: 30em;
 
             border-radius: var(--b-radius);
         }

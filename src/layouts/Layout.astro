@@ -110,7 +110,7 @@ const { title, description, banner, header, footer, flex } = Astro.props;
 			display: flex;
 			flex-direction: column;
 			gap: 1rem;
-			padding: 1rem;
+			padding: 2rem;
 		}
 
 		ul {
@@ -118,6 +118,29 @@ const { title, description, banner, header, footer, flex } = Astro.props;
 
 			li { padding-bottom: 0.25rem; }
     		li:last-child { padding-bottom: 0; }
+		}
+	}
+
+    .anchor-head {
+        position: relative;
+
+        &:hover {
+            a { opacity: 1; }
+        }
+        
+        .anchor-link {
+            padding: .5rem;
+            display: inline-flex;
+            position: absolute;
+            top: 50%;
+            left: calc(-1rem + -16px);
+            margin: auto;
+            text-decoration: none;
+            color: var(--primary-color);
+            transform: translateY(calc(-50% - 0.3rem));
+            opacity: 0;
+
+            &:focus { opacity: 1; }
 		}
 	}
 

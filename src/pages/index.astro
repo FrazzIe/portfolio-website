@@ -1,8 +1,85 @@
 ---
+import Link from "@components/Link.astro";
 import Layout from "@layouts/Layout.astro";
-
+import Hero from "@components/Hero.astro";
 ---
 
-<Layout title="" description="">
-    boom
+<Layout title="" description="" header={false} flex>
+    <div class="container">
+        <Hero title="Fraser Watt">
+            <div slot="subtitle" class="subtitle-slider">
+                <span>Full-stack Developer</span>
+                <span>Lego enthusiast</span>
+                <span>Gaming buff</span>
+                <span>Homelab enjoyer</span>
+            </div>
+        </Hero>
+
+        <div class="quick-nav">
+            <Link target="/projects">Projects</Link>
+            <Link target="/cv">CV / Résumé</Link>
+        </div>
+
+        <div class="socials">
+            <Link
+                target="mailto:fwatt@proton.me?subject=Job%20Opportunity"
+                icon="ri:mail-fill"
+            />
+            <Link
+                target="https://linkedin.com/in/fraser-w"
+                icon="ri:linkedin-box-fill"
+            />
+            <Link target="https://git.fwatt.dev" icon="ri:github-fill" />
+        </div>
+    </div>
 </Layout>
+
+<style>
+    .container {
+        display: grid;
+        place-items: center;
+        place-content: center;
+
+        flex: 1;
+        gap: 1.5rem;
+    }
+
+    @keyframes slide {
+        10% { margin-top: 0; } 25% { margin-top: -20px; }
+        30% { margin-top: -20px; } 40% { margin-top: -40px; }
+        60% { margin-top: -40px; } 70% { margin-top: -60px; }
+        85% { margin-top: -60px; } 95% { margin-top: 0; }
+        100% { margin-top: 0; }
+    }
+
+    .subtitle-slider {
+        height: 20px;
+        overflow: hidden;
+        position: relative;
+
+        span { display: block; }
+
+        span:first-child {
+            animation: slide 6s linear infinite;
+        }
+    }
+
+    .quick-nav {
+        display: flex;
+        gap: 1rem;
+
+        a {
+            text-decoration: none;
+            border-bottom: 1px solid var(--white-color);
+            padding-bottom: 1px;
+        }
+
+        font-size: var(--h5-font-size);
+    }
+
+    .socials {
+        display: flex;
+        gap: 1rem;
+        padding-top: 1rem;
+    }
+</style>

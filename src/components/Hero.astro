@@ -1,7 +1,7 @@
 ---
 interface Props {
     title: string;
-    subtitle: string;
+    subtitle?: string;
     socials?: boolean
 }
 
@@ -11,7 +11,7 @@ const { title, subtitle, socials } = Astro.props;
     <div class="hero-content">
         <article class="hero-intro">
             <h1 class="title">{title}</h1>
-            <div class="subtitle">{subtitle}</div>
+            <div class="subtitle"><slot name="subtitle">{subtitle && subtitle}</slot></div>
         </article>
         
         {socials && 

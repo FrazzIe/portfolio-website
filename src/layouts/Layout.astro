@@ -1,16 +1,19 @@
 ---
-import Header from '@components/layout/Header.astro';
-import Footer from '@components/layout/Footer.astro';
 import Banner from '@components/layout/Banner.astro';
+import Footer from '@components/layout/Footer.astro';
+import Header from '@components/layout/Header.astro';
 import { navigation } from 'src/navigation.config';
 
 interface Props {
 	title: string;
 	description: string;
 	banner?: string;
+	footer?: boolean;
+	header?: boolean;
+	flex?: boolean;
 }
 
-const { title, description, banner } = Astro.props;
+const { title, description, banner, header, footer, flex } = Astro.props;
 ---
 
 <!doctype html>
@@ -26,11 +29,8 @@ const { title, description, banner } = Astro.props;
 
 	<body>
 		{banner && <Banner>{banner}</Banner>}
-		<Header navItems={navigation}>
-			fwatt.dev
-		</Header>
-		<main><slot /></main>
-		<Footer></Footer>
+		{header !== false && <Header navItems={navigation}>fwatt.dev</Header>}
+		{footer !== false && <Footer></Footer>}
 	</body>
 </html>
 

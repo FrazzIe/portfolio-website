@@ -7,9 +7,9 @@ thumbnail: /src/assets/projects/damage-tracker/server_logs.webp
 images:
 - src: /src/assets/projects/damage-tracker/server_logs.webp
   alt: Console output logs for recent damage'
-- src: /src/assets/projects/damage-tracker/grafana_loki_overview.webp'
+- src: /src/assets/projects/damage-tracker/grafana_loki_overview.webp
   alt: Collection of logs ingested from Loki into Grafana
-- src: /src/assets/projects/damage-tracker/grafana_loki_single.webp'
+- src: /src/assets/projects/damage-tracker/grafana_loki_single.webp
   alt: View of rich metadata for single Loki/Grafana damage log
 ---
 

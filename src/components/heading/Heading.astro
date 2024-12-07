@@ -1,0 +1,44 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import HeadingAnchor from "./HeadingAnchor.astro";
+
+interface Props extends HTMLAttributes<'h1' | 'h2' | 'h3' | 'h4' | 'h5'>{
+    is?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5';
+    label?: string;
+    slug?: string;
+    underline?: boolean;
+}
+
+const { is, label, slug, underline, ...props } = Astro.props;
+---
+
+{(!is || is === 'h1') && <h1 id={slug} class:list={[ 'anchor-head', { underline } ]} {...props}>
+    <slot>{label && label}</slot>
+    {slug && <HeadingAnchor slug={slug}></HeadingAnchor>}
+</h1>}
+
+{is === 'h2' && <h2 id={slug} class:list={[ 'anchor-head', { underline } ]} {...props}>
+    <slot>{label && label}</slot>
+    {slug && <HeadingAnchor slug={slug}></HeadingAnchor>}
+</h2>}
+
+{is === 'h3' && <h3 id={slug} class:list={[ 'anchor-head', { underline } ]} {...props}>
+    <slot>{label && label}</slot>
+    {slug && <HeadingAnchor slug={slug}></HeadingAnchor>}
+</h3>}
+
+{is === 'h4' && <h4 id={slug} class:list={[ 'anchor-head', { underline } ]} {...props}>
+    <slot>{label && label}</slot>
+    {slug && <HeadingAnchor slug={slug}></HeadingAnchor>}
+</h4>}
+
+{is === 'h5' && <h5 id={slug} class:list={[ 'anchor-head', { underline } ]} {...props}>
+    <slot>{label && label}</slot>
+    {slug && <HeadingAnchor slug={slug}></HeadingAnchor>}
+</h5>}
+
+<style>
+    .underline {
+        border-bottom: 5px solid var(--secondary-color);
+    }    
+</style>

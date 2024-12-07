@@ -1,5 +1,6 @@
 ---
 import Carousel from "@components/carousel/Carousel.astro";
+import Heading from "@components/heading/Heading.astro";
 import Link from "@components/Link.astro";
 import Title from "@components/Title.astro";
 import Layout from "@layouts/Layout.astro";
@@ -22,7 +23,7 @@ const { Content } = await entry.render();
 ---
 
 <Layout title={`Projects | ${entry.data.name}`} description={entry.data.blurb}>
-    <Title title={entry.data.name}></Title>
+    <Heading underline>{entry.data.name}</Heading>
 
     {entry.data.images && <Carousel items={entry.data.images}></Carousel>}
 

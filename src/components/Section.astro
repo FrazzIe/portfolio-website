@@ -1,23 +1,19 @@
 ---
 import { Icon } from 'astro-icon/components';
 import type { HTMLAttributes } from 'astro/types';
+import Heading from './heading/Heading.astro';
+import { slugify } from '@helpers/slugify';
 
 interface Props extends HTMLAttributes<"section"> {
     title: string;
+    heading?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5';
     gap?: string;
 }
 
-const { title, gap, ...props } = Astro.props;
+const { title, heading, gap, ...props } = Astro.props;
 ---
 <section {...props}>
-    <h2 class="title">
-        {title}
-        <a 
-            href={`#${title}`} 
-            aria-label={`Perma-link: ${title}`}>
-            <Icon name="ri:links-fill" size={16} />
-        </a>
-    </h2>
+    <Heading is={heading ?? 'h2'} slug={slugify(title)} underline>{title}</Heading>
     <slot />
 </section>
 
@@ -29,29 +25,6 @@ const { title, gap, ...props } = Astro.props;
     }
 
     .title {
-        position: relative;
-        gap: 1rem;
-
-        color: var(--text-color);
         border-bottom: 5px solid var(--secondary-color);
-
-        &:hover {
-            a { opacity: 1; }
-        }
-        
-        a {
-            display: inline-flex;
-            position: absolute;
-            top: 50%;
-            left: -20px;
-            margin: auto;
-            font-size: var(--h4-font-size);
-            text-decoration: none;
-            color: var(--primary-color);
-            transform: translateY(calc(-50% - 0.3rem));
-            opacity: 0;
-
-            &:focus { opacity: 1; }
-        }
     }
 </style>

@@ -22,7 +22,7 @@ const projectsByYear = (await getCollection('projects'))
     {Object.keys(projectsByYear)
         .sort((a, b) => a < b ? 1 : -1)
         .map(year =>
-            <Section title={year} class="projects" id={year}>
+            <Section title={year} class="projects">
                 {projectsByYear[year].map(p => <Project entry={p}></Project>)}
             </Section>
         )
@@ -36,14 +36,14 @@ const projectsByYear = (await getCollection('projects'))
         grid-auto-flow: dense;
         gap: 0.5rem;
 
-        h2:first-child { 
+        .anchor-head:first-child { 
             grid-column: span 2;
             margin-bottom: 0.5rem;
         }
 
         @media only screen and (max-width: 768px) {
             grid-template-columns: 1fr;
-            :first-child { grid-column: 1; }
+            .anchor-head:first-child { grid-column: 1; }
         }
     }
 </style>

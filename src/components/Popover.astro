@@ -1,0 +1,123 @@
+---
+
+interface Props {
+
+}
+
+const { ...props } = Astro.props;
+---
+
+<script>
+    export type PopoverPlacement = 'left' | 'right' | 'top' | 'bottom';
+
+    export class Popover extends HTMLElement {
+        readonly placements: PopoverPlacement[] = [ 'top', 'right', 'bottom', 'left' ];
+
+        triggerEl: HTMLElement;
+        contentEl: HTMLElement;
+        
+        x = 0;
+        y = 0;
+
+        connectedCallback() {
+            // TODO: err handling
+            this.triggerEl = this.children[0] as HTMLElement;
+            this.contentEl = this.children[1] as HTMLElement;
+
+            this.triggerEl.addEventListener('click', e => this.trigger(e));
+            this.hideOnFocusLoss();
+        }
+
+        offsetPosition(placement: PopoverPlacement) {
+            const [ x, y ] = this.getPositionOffset(placement);
+
+            this.x = x;
+            this.y = y;
+
+            this.contentEl.style.left = `${this.x}px`;
+            this.contentEl.style.top = `${this.y}px`;
+        }
+
+        trigger(event: MouseEvent) {
+            event.preventDefault();
+            event.stopPropagation();
+
+            if (this.visible())
+                return this.hide();
+
+            this.x = 0;
+            this.y = 0;
+
+            this.show();
+            this.offsetPosition('bottom');
+            this.contentEl.focus();
+        }
+
+        hideOnFocusLoss() {
+            window.addEventListener('keydown', event => event.key === 'Escape' && this.hide());       
+            window.addEventListener('pointerdown', () => this.hide());
+            this.triggerEl.addEventListener('pointerdown', event => event.stopPropagation());
+            this.contentEl.addEventListener('pointerdown', event => event.stopPropagation());         
+        }
+
+        show() { this.contentEl.style.display = 'block'; }
+        hide() { this.contentEl.style.display = 'none'; }
+        visible() { return this.contentEl.style.display === 'block'; }
+
+        private getPositionOffset(placement: PopoverPlacement, initial?: PopoverPlacement): [ number, number ] {
+            let x = this.x;
+            let y = this.y;
+
+            // placement offsets
+            if (placement === 'left' || placement === 'right') {
+                x += placement === 'left' ? -this.contentEl.offsetWidth : this.triggerEl.clientWidth;
+                y -= (this.contentEl.offsetHeight / 2) - (this.triggerEl.clientHeight / 2);
+            }
+
+            if (placement === 'top' || placement === 'bottom') {
+                x -= (this.contentEl.offsetWidth / 2) - (this.triggerEl.clientWidth / 2);
+                y += placement === 'top' ? -this.contentEl.offsetHeight : this.triggerEl.clientHeight;
+            }
+
+            const pageX = this.offsetLeft + x;
+            const pageY = this.offsetTop + y;
+
+            // adjust placement if hidden
+            if (pageX < 0 || pageX + this.contentEl.offsetWidth > window.innerWidth || pageY < 0 || pageY + this.contentEl.offsetHeight > window.innerHeight) {
+                const nextPlacement = this.getAdjustedPlacement(placement);
+                if (placement !== initial)
+                    return this.getPositionOffset(nextPlacement, initial ?? placement);
+            }
+            
+            return [ x, y ];
+        }
+
+        private getAdjustedPlacement(placement: PopoverPlacement) {
+            const next = this.placements.indexOf(placement) + 1;
+            return next >= this.placements.length ? this.placements[0] : this.placements[next];
+        }
+    }
+
+    customElements.define('f-popover', Popover);
+</script>
+
+<f-popover {...props}>
+    <slot name="trigger"></slot>
+    
+    <div class="popover-content">
+        <slot></slot>
+    </div>
+</f-popover>
+
+<style is:global>
+    f-popover {
+        position: relative;
+        display:  flex;
+    }
+
+    .popover-content {
+        position: absolute;
+        display: none;
+        z-index: 1;
+    }
+</style>

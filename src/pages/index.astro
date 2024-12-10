@@ -1,7 +1,8 @@
 ---
-import Link from "@components/Link.astro";
-import Layout from "@layouts/Layout.astro";
 import Hero from "@components/Hero.astro";
+import Link from "@components/Link.astro";
+import MailButton from "@components/MailButton.astro";
+import Layout from "@layouts/Layout.astro";
 ---
 
 <Layout title="" description="" header={false} flex>
@@ -16,20 +17,14 @@ import Hero from "@components/Hero.astro";
         </Hero>
 
         <div class="quick-nav">
-            <Link target="/projects">Projects</Link>
-            <Link target="/cv">CV / Résumé</Link>
+            <Link url="/projects">Projects</Link>
+            <Link url="/cv">CV / Résumé</Link>
         </div>
 
         <div class="socials">
-            <Link
-                target="mailto:fwatt@proton.me?subject=Job%20Opportunity"
-                icon="ri:mail-fill"
-            />
-            <Link
-                target="https://linkedin.com/in/fraser-w"
-                icon="ri:linkedin-box-fill"
-            />
-            <Link target="https://git.fwatt.dev" icon="ri:github-fill" />
+            <MailButton></MailButton>
+            <Link url="https://linkedin.com/in/fraser-w" icon="ri:linkedin-box-fill" aria-label="LinkedIn" />
+            <Link url="https://git.fwatt.dev" icon="ri:github-fill" aria-label="GitHub" />
         </div>
     </div>
 </Layout>

@@ -1,0 +1,41 @@
+---
+import Button from "./Button.astro";
+import Menu from "./Menu.astro";
+import MenuItem from "./MenuItem.astro";
+import Popover from "./Popover.astro";
+---
+
+<script>
+    import { clipboard } from "@helpers/clipboard";
+import { createToast } from "@helpers/toast";
+
+    const copyButtons = document.querySelectorAll('button[data-action="copy"]') as NodeListOf<HTMLButtonElement>;
+
+    for (const button of copyButtons)
+        button.addEventListener('click', () => copy(button));
+
+    async function copy(el: HTMLElement) {
+        const text = el.dataset.copy;
+        if (!text)
+            return createToast('Something went wrong!', 'error');
+        if (await clipboard(text))
+            createToast('Copied!', 'success');
+        else
+            createToast('Failed to copy!', 'error');
+    }
+</script>
+
+<Popover>
+    <Button
+        icon="ri:mail-fill"
+        standalone
+        aria-label="Email address"
+        slot="trigger">
+        <slot></slot>
+    </Button>
+
+    <Menu title="fwatt@proton.me">
+        <MenuItem as="button" label="Copy email" icon="ri:clipboard-fill" data-action="copy" data-copy="fwatt@proton.me"></MenuItem>
+        <MenuItem as="a" label="Open app" icon="ri:external-link-fill" href="mailto:fwatt@proton.me?subject=Job%20Opportunity"></MenuItem>
+    </Menu>
+</Popover>

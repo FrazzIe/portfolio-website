@@ -16,12 +16,12 @@ links:
   source: https://github.com/ResourceForge/website
   additional:
   - label: ""
-    target: https://starlight.astro.build/
+    url: https://starlight.astro.build/
     icon:
       name: astro-starlight
       width: 224
       height: 32
-    external: false
+    type: null
     btn: false
 ---
 

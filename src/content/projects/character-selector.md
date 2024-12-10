@@ -17,7 +17,7 @@ links:
   source: https://github.com/ResourceForge/character-selector-public
   additional:
   - label: Documentation
-    target: https://resourceforge.net/character-selector
+    url: https://resourceforge.net/character-selector
 ---
 
 ## Features

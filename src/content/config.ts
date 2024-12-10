@@ -85,7 +85,7 @@ const projects = defineCollection({
 					.array(z
 						.object({
 							label: z.string(),
-							target: z.string(),					
+							url: z.string(),					
 							icon: z
 								.object({
 									name: z.string(),
@@ -98,7 +98,8 @@ const projects = defineCollection({
 							type: z
 								.union([
 									z.literal('internal'),
-									z.literal('external')
+									z.literal('external'),
+									z.literal(null)
 								])
 								.optional()
 								.default('external'),

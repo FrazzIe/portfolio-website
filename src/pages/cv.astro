@@ -8,6 +8,7 @@ import Experience from '@components/cv/Experience.astro';
 import Project from '@components/cv/Project.astro';
 import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
+import MailButton from '@components/MailButton.astro';
 
 const experiences = await getCollection('experience');
 const education = await getCollection('education');
@@ -21,9 +22,9 @@ const projects = await getCollection('projects');
 		title="Fraser Watt" 
 		subtitle='Full-stack Developer'
         socials>
-		<Link target="mailto:fwatt@proton.me?subject=Job%20Opportunity" icon="ri:mail-fill" type="external">Mail</Link>
-		<Link target="https://linkedin.com/in/fraser-w" icon="ri:linkedin-box-fill" type="external">Linkedin</Link>
-		<Link target="https://git.fwatt.dev" icon="ri:github-fill" type="external">GitHub</Link>
+		<MailButton><u>Mail</u></MailButton>
+		<Link url="https://linkedin.com/in/fraser-w" icon="ri:linkedin-box-fill" type="external">LinkedIn</Link>
+		<Link url="https://git.fwatt.dev" icon="ri:github-fill" type="external">GitHub</Link>
 	</Hero>
 
     <Section title="Skills">
@@ -46,6 +47,7 @@ const projects = await getCollection('projects');
         <div class="projects">
             {
                 projects
+                    .filter(i => !i.data.hidden)
                     .sort((a, b) => a.data.startDate.valueOf() > b.data.startDate.valueOf() ? -1 : 1)
                     .slice(0, 9)
                     .map(e => <Project entry={e}></Project>)
@@ -55,7 +57,7 @@ const projects = await getCollection('projects');
 	</Section>
 
     <Section title="About">
-        <p style="text-align: justify;">
+        <p class="about-paragraph">
             I am a full stack developer looking to take the next step in 
 			my career and further advance my skills in the industry. I hope to contribute 
 			to new or existing projects with a team of like-minded individuals. 
@@ -70,5 +72,9 @@ const projects = await getCollection('projects');
         display: flex;
         flex-direction: column;
         gap: 0.25rem;
+    }
+
+    .about-paragraph {
+        text-align: justify;
     }
 </style>

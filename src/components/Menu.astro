@@ -1,0 +1,37 @@
+---
+interface Props {
+    title?: string;
+}
+
+const { title } = Astro.props;
+---
+
+<menu>
+    {title && <li class="title">{title}</li>}
+    <slot/>
+</menu>
+  
+<style>
+    menu {
+        background-color: var(--secondary-color);
+        border-radius: 3px;
+        border: 1px solid var(--accent-color);
+
+        padding: 0 0.2rem;
+    }
+
+    li {
+        list-style: none;
+
+        border-bottom: 1px solid var(--accent-color);
+
+        &:last-child {
+            border-bottom: none;
+        }
+    }
+
+    .title {
+        padding: 0.5rem;
+        border-color: var(--white-color);
+    }
+</style>

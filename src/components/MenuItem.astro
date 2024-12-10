@@ -1,0 +1,37 @@
+---
+import { Icon } from 'astro-icon/components';
+import type { Polymorphic } from 'astro/types';
+
+type Props<Tag extends 'a' | 'button' | 'span'> = Polymorphic<{ as: Tag }> & {
+    label: string;
+    icon?: string;
+};
+
+const { as: Tag, label, icon, ...props } = Astro.props;
+---
+
+<Tag {...props}>{icon && <Icon name={icon}></Icon>}{label}</Tag>
+
+<style>
+    a, button, span {
+        border: none;
+        background: none;
+        text-decoration: none;
+        font-size: var(--default-font-size);
+
+        display: inline-flex;
+        gap: 1rem;
+        align-items: center;
+        cursor: pointer;
+        width: 100%;
+        padding: 0.5rem;
+    }
+
+    a, button {
+        color: var(--button-text-color);
+
+        &:hover, &:focus {
+            color: var(--button-highlight-text-color);
+        }
+    }
+</style>

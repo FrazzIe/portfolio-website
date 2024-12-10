@@ -1,10 +1,11 @@
 ---
 import Button from '@components/Button.astro';
-import Link, { type LinkProps } from '@components/Link.astro';
+import Link from '@components/Link.astro';
 import { Icon } from 'astro-icon/components';
+import type { ComponentProps } from 'astro/types';
 
 interface Props {
-    navItems?: LinkProps[];
+    navItems?: ComponentProps<typeof Link>[];
 }
 
 const { navItems } = Astro.props;
@@ -16,7 +17,7 @@ const { navItems } = Astro.props;
     </div>
 
     <div class="actions">
-        <Button id="nav-btn" ariaLabel="Toggle navigation menu">
+        <Button id="nav-btn" aria-label="Toggle navigation menu">
             <Icon class="nav-btn-open" name="ri:menu-fill" size={20}></Icon>
             <Icon class="nav-btn-close" name="ri:close-fill" size={20}></Icon>
         </Button>

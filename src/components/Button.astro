@@ -1,53 +1,65 @@
 ---
 import { Icon } from 'astro-icon/components';
 import type { IconOptions } from './IconOptions';
+import type { HTMLAttributes } from 'astro/types';
 
-interface Props {
+interface Props extends HTMLAttributes<'button'> {
     label?: string;
     icon?: string | IconOptions;
-    ariaLabel?: string;
-    id?: string;
+    standalone?: boolean;
 }
 
-const { label, icon, ariaLabel, id } = Astro.props;
+const { label, icon, standalone, ...props } = Astro.props;
 ---
 
-<button id={id} class="btn" aria-label={ariaLabel}>
+<button class:list={[ 'btn', { standalone } ]} {...props}>
     {icon && (typeof icon === 'string' ? 
-        <Icon name={icon} size={16} ></Icon> :
+        <Icon name={icon} size={32} ></Icon> :
         <Icon {...icon} ></Icon>
     )}
     <slot>{label && label}</slot>
 </button>
 
-<style is:global>
+<style>
     button {
-        border: none;
-
         display: inline-flex;
         align-items: center;
         gap: 0.25rem;
 
         &:focus-visible { outline: var(--accent-color) auto 2px; }
     }
+</style>
+
+<style is:global>
+    :root {
+        --button-highlight-text-color: var(--text-color);
+        --button-text-color: #d0d2d4;
+    }
 
     .btn {        
         font-size: var(--default-font-size);
         
-        &:hover {
+        &:hover, &.active, &:focus   {
             border: 2px solid var(--primary-color);
-            color: var(--white-color);
+            color: var(--button-highlight-text-color);
         }
 
         width: max-content;
         padding: 0.5rem;
         
+        border: none;
         border: 2px solid var(--accent-color);
         border-radius: var(--b-radius);
 
         background-color: var(--secondary-color);
-        color: var(--text-color);
+        color: var(--button-text-color);
 
         cursor: pointer;
+    }
+
+    .btn.standalone {
+        border: none;
+        padding: 0;
+        background: none;
     }
 </style>

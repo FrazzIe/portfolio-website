@@ -29,6 +29,7 @@ export default defineConfig({
                     },
                     properties: {
                         className: ['anchor-link'],
+                        ariaLabel: 'Perma-link'
                     },
                 }
             ]

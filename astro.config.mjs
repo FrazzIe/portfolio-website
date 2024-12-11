@@ -38,10 +38,30 @@ export default defineConfig({
     },
     integrations: [
         icon({
-            iconDir: "src/assets/icons",
+            iconDir: 'src/assets/icons',
             include: {
-                ri: ["*"],
+                ri: [
+                    // '*',
+                    'links-fill',
+                    'external-link-fill',
+                    'external-link-line',
+                    'clipboard-fill',
+                    'sun-fill',
+                    'moon-fill',
+                    'arrow-left-s-line',
+                    'arrow-right-s-line',
+                    'menu-fill',
+                    'close-fill',
+                    'checkbox-circle-fill',
+                    'alert-fill',
+                    'error-warning-fill',
+                    'information-fill',
+                    'mail-fill',
+                    'github-fill',
+                    'linkedin-box-fill'
+                ]               
             }
         })
     ]
 });
+

@@ -1,7 +1,7 @@
 ---
 name: ResourceForge
 blurb: A website containing documentation for ResourceForge projects (character-selector)
-startDate: '2024-10-01'
+startDate: '2024-10-02'
 lastUpdated: '2024-11-08'
 thumbnail: /src/assets/projects/resourceforge-website/content.webp
 images:

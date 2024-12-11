@@ -26,12 +26,12 @@ const styles: ToastStyle[] = [ 'success', 'warning', 'error', 'info' ];
 
 <style>
     @keyframes fade-out { to { opacity: 0; } }
-    @keyframes slide-in { from { transform: translateY(-100vh); } }
+    @keyframes slide-in { from { transform: translateY(100vh); } }
 
     section {
-        position: absolute;
+        position: fixed;
         left: 50%;
-        top: 5%;
+        bottom: 5%;
         transform: translate(-50%, -5%);
         
         display: grid;
@@ -45,10 +45,10 @@ const styles: ToastStyle[] = [ 'success', 'warning', 'error', 'info' ];
         border-radius: var(--b-radius);
         padding: 0.5rem;
 
-        color: var(--white-color);
+        color: var(--d-white-color);
 
         /* background-color: #004153; */
-        background-color: var(--secondary-color);
+        background-color: var(--primary-color);
 
         display: flex;
         align-items: center;

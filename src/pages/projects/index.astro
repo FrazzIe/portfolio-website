@@ -18,7 +18,7 @@ const projectsByYear = (await getCollection('projects'))
     }, {} as Record<string, CollectionEntry<'projects'>[]>);
 ---
 
-<Layout title={`Projects`} description={`All projects`}>
+<Layout title={`fwatt | Projects`} description={`Fraser Watt\'s project showcase sorted by year.`}>
     {Object.keys(projectsByYear)
         .sort((a, b) => a < b ? 1 : -1)
         .map(year =>

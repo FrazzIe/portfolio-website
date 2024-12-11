@@ -1,8 +1,7 @@
 ---
-import { Icon } from 'astro-icon/components';
+import { slugify } from '@helpers/slugify';
 import type { HTMLAttributes } from 'astro/types';
 import Heading from './heading/Heading.astro';
-import { slugify } from '@helpers/slugify';
 
 interface Props extends HTMLAttributes<"section"> {
     title: string;

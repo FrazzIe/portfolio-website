@@ -47,7 +47,7 @@ const education = defineCollection({
 
 const projects = defineCollection({
 	type: 'content',
-	schema: z.object({
+	schema: ({ image }) => z.object({
 		name: z.string(),
 		blurb: z.string(),
 		startDate: z
@@ -58,7 +58,7 @@ const projects = defineCollection({
 			.string()
 			.or(z.date())
 			.transform(v => new Date(v)),
-		thumbnail: z.string(),
+		thumbnail: image(),
 		images: z
 			.array(z
 				.object({

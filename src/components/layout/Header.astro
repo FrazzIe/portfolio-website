@@ -1,6 +1,7 @@
 ---
 import Button from '@components/Button.astro';
 import Link from '@components/Link.astro';
+import ThemeButton from '@components/ThemeButton.astro';
 import { Icon } from 'astro-icon/components';
 import type { ComponentProps } from 'astro/types';
 
@@ -13,26 +14,33 @@ const { navItems } = Astro.props;
 
 <header>
     <div class="title">
-        <slot/>
-    </div>
-
-    <div class="actions">
         <Button id="nav-btn" aria-label="Toggle navigation menu">
             <Icon class="nav-btn-open" name="ri:menu-fill" size={20}></Icon>
             <Icon class="nav-btn-close" name="ri:close-fill" size={20}></Icon>
         </Button>
+
+        <slot/>
     </div>
+
+
 
     <nav id="nav-content">
         {navItems?.map(item => <Link {...item}></Link>)}
     </nav>
+
+    <div class="actions">
+
+        <ThemeButton></ThemeButton>
+    </div>
 </header>
 
 <script>
     const navBtn = document.getElementById('nav-btn');
     const navContent = document.getElementById('nav-content');
 
-    navBtn?.addEventListener('click', _ => navContent?.classList.toggle('expanded'));
+    navBtn?.addEventListener('click', _ => {
+        navContent?.classList.toggle('expanded');
+    });
 </script>
 
 <style>
@@ -55,6 +63,12 @@ const { navItems } = Astro.props;
         color: var(--secondary-color);
 
         margin-left: 1rem;
+
+        display: flex;
+        gap: 0.5rem;
+        place-items: center;
+
+        #nav-btn { display: none; }
     }
 
     .actions {
@@ -67,7 +81,7 @@ const { navItems } = Astro.props;
         align-items: center;
         margin-right: 1rem;
 
-        #nav-btn { display: none; }
+        
     }
 
     .nav-btn-close { display: none; }
@@ -107,11 +121,14 @@ const { navItems } = Astro.props;
                 .nav-btn-close { display: block !important; }
                 .nav-btn-open { display: none; }
             }
-        }        
+        }    
+        
+        .title {
+            #nav-btn { display: inline-flex; }
+        }
 
         .actions { 
             grid-column: span 2;
-            #nav-btn { display: inline-flex; }
         }
 
         nav {
@@ -122,11 +139,12 @@ const { navItems } = Astro.props;
             flex-direction: column;
             gap: 0;
 
+            visibility: hidden;
+
             &.expanded {               
                 max-height: 100vh; 
                 transition: max-height 0.35s ease-in;
-
-                border-bottom: 1px solid var(--primary-color);
+                visibility: visible;
             }
 
             a { 

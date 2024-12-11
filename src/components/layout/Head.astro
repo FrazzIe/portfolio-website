@@ -8,10 +8,23 @@ export interface Props {
     };
 }
 
+function openGraphImage(url: URL) {
+    let path = url.pathname.trim().toLowerCase();
+
+    if (path.startsWith('/'))
+        path = path.slice(1);
+    if (path.endsWith('/'))
+        path = path.slice(0, -1);
+    if (path === '')
+        path = 'home';
+
+    return `${url.origin}/open-graph/${path}.webp`;
+}
+
 const {
     title,
     description,
-    image = `${Astro.url.origin}/open-graph/${Astro.url.pathname.slice(1)}.webp`,
+    image = openGraphImage(Astro.url),
     og,
 } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);

@@ -48,11 +48,7 @@ const { title, subtitle, socials } = Astro.props;
 		max-width: fit-content;
 
         .title {
-            font-size: var(--h2-font-size);
-
-            @media only screen and (min-width: 415px) {
-                font-size: var(--h1-font-size);
-            }
+            font-size: var(--h1-font-size);
         }
 
 		.subtitle {
@@ -74,8 +70,4 @@ const { title, subtitle, socials } = Astro.props;
     .hero-social > * {
         flex: 1;
     }
-
-    /* .hero-about {
-        text-align: justify;
-    } */
 </style>

@@ -128,6 +128,17 @@ const { title, description, banner, header, footer, flex } = Astro.props;
 			li { padding-bottom: 0.25rem; }
     		li:last-child { padding-bottom: 0; }
 		}
+
+		@media only screen and (max-width: 768px) {
+			--h1-font-size: 3.410rem;
+			--h2-font-size: 3.158rem;
+		}
+
+		@media only screen and (max-width: 450px) {
+			--h1-font-size: 2.6rem;
+			--h2-font-size: 2.2rem;
+			--h3-font-size: 2rem;
+		}
 	}
 
     .anchor-head {

@@ -2,6 +2,7 @@
 import Hero from "@components/Hero.astro";
 import Link from "@components/Link.astro";
 import MailButton from "@components/MailButton.astro";
+import ThemeButton from "@components/ThemeButton.astro";
 import Layout from "@layouts/Layout.astro";
 ---
 
@@ -16,10 +17,10 @@ import Layout from "@layouts/Layout.astro";
             </div>
         </Hero>
 
-        <div class="quick-nav">
+        <nav>
             <Link url="/projects">Projects</Link>
             <Link url="/cv">CV / Résumé</Link>
-        </div>
+        </nav>
 
         <div class="socials">
             <MailButton></MailButton>
@@ -59,14 +60,15 @@ import Layout from "@layouts/Layout.astro";
         }
     }
 
-    .quick-nav {
+    nav {
         display: flex;
         gap: 1rem;
 
         a {
             text-decoration: none;
-            border-bottom: 1px solid var(--white-color);
+            border-bottom: 1px solid var(--d-white-color);
             padding-bottom: 1px;
+            font-weight: 500;
         }
 
         font-size: var(--h5-font-size);
@@ -76,5 +78,9 @@ import Layout from "@layouts/Layout.astro";
         display: flex;
         gap: 1rem;
         padding-top: 1rem;
+    }
+
+    :global(footer) {
+        justify-content: center;
     }
 </style>

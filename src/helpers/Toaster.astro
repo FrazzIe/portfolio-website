@@ -69,4 +69,11 @@ const styles: ToastStyle[] = [ 'success', 'warning', 'error', 'info' ];
         z-index: 2;
         pointer-events: none;
     }
+
+    :global([data-theme="light"]) {
+        .toast {
+            .success { color: #01a76f; }
+            .warning { color: #f3de1d; }
+        }
+    }
 </style>

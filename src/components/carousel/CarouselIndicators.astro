@@ -32,8 +32,8 @@ import { Icon } from "astro-icon/components";
             width: 5rem;
             border-radius: var(--b-radius);
 
-            &.left { background: linear-gradient(-90deg, transparent 8%, var(--black-color) 100%); }
-            &.right { background: linear-gradient(90deg, transparent 8%, var(--black-color) 100%); }
+            &.left { background: linear-gradient(-90deg, transparent 8%, var(--d-black-color) 100%); }
+            &.right { background: linear-gradient(90deg, transparent 8%, var(--d-black-color) 100%); }
 
             &.left, &.right {
                 transition: opacity 0.6s;
@@ -43,14 +43,14 @@ import { Icon } from "astro-icon/components";
                 &:focus-visible { opacity: 1;}
             }
 
-            svg { color: rgba(var(--white-color-rgb), 0.6); }
+            svg { color: rgba(var(--d-white-color-rgb), 0.6); }
 
             &:hover {
-                svg { color: var(--white-color) }
+                svg { color: var(--d-white-color) }
             }
 
             &:focus-visible { 
-                outline: var(--white-color) auto 2px;
+                outline: var(--d-white-color) auto 2px;
             }
         }
     }

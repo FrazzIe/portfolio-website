@@ -45,17 +45,23 @@ const { title, description, banner, header, footer, flex } = Astro.props;
 		color-scheme: dark;
 
 		--text-color: #eaf2f5;
-		--highlighted-text-color: #1d8cb4;
-
-		--primary-color: #1d8cb4;
-		--secondary-color: #27537e;
+		--highlight-text-color: #d0d2d4;
+		
+		--primary-color: #27537e;
+		--secondary-color: #1d8cb4;
 		--accent-color: #7192b2;
 		--background-color: #141d28;
+
+		--d-white-color: var(--white-color);
+		--d-white-color-rgb: var(--white-color-rgb);
+
+		--d-black-color: var(--black-color);
+		--d-black-color-rgb: var(--black-color-rgb);
 
 		--white-color: #fff;
 		--white-color-rgb: 255, 255, 255;
 
-		--black-color: #000;
+		--black-color: #000;		
 		--black-color-rgb: 0, 0, 0;
 
 		/* font */
@@ -104,9 +110,9 @@ const { title, description, banner, header, footer, flex } = Astro.props;
 		}
 
 		hr {
-			color: var(--primary-color);
-			border-color: var(--primary-color);
-			background-color: var(--primary-color);
+			color: var(--secondary-color);
+			border-color: var(--secondary-color);
+			background-color: var(--secondary-color);
 		}
 
 		main {
@@ -139,7 +145,7 @@ const { title, description, banner, header, footer, flex } = Astro.props;
             left: calc(-1rem + -16px);
             margin: auto;
             text-decoration: none;
-            color: var(--primary-color);
+            color: var(--secondary-color);
             transform: translateY(calc(-50% - 0.3rem));
             opacity: 0;
 
@@ -158,15 +164,24 @@ const { title, description, banner, header, footer, flex } = Astro.props;
 		}
 	}
 
-	/* @media (prefers-color-scheme: light) {
-		:root {
-			color-scheme: light;
-		}		
-	}
+	[data-theme="light"] {
+		color-scheme: light;
 
-	@media (prefers-color-scheme: dark) {
-		:root {
-			color-scheme: dark;
-		}
-	} */
+		/* --secondary-color: #1d8cb4;
+		--primary-color: #27537e; */
+
+		--text-color: #0a1215;
+		--highlight-text-color: #0a1215b0;
+
+		--primary-color: #90CAF9;
+		--secondary-color: #1E88E5;		
+		--accent-color: #4d6e8f;
+		--background-color: rgb(245,245,245);
+
+		--d-white-color: var(--black-color);
+		--d-white-color-rgb: var(--black-color-rgb);
+
+		--d-black-color: var(--white-color);
+		--d-black-color-rgb: var(--white-color-rgb);
+	}
 </style>

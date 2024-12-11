@@ -1,10 +1,12 @@
 ---
+import type { PopoverPlacement } from './Popover.astro.0.mts';
+
 
 interface Props {
-
+    placement: PopoverPlacement
 }
 
-const { ...props } = Astro.props;
+const { placement } = Astro.props;
 ---
 
 <script>
@@ -13,6 +15,7 @@ const { ...props } = Astro.props;
     export class Popover extends HTMLElement {
         readonly placements: PopoverPlacement[] = [ 'top', 'right', 'bottom', 'left' ];
 
+        placement: PopoverPlacement = 'bottom';
         triggerEl: HTMLElement;
         contentEl: HTMLElement;
         
@@ -20,9 +23,25 @@ const { ...props } = Astro.props;
         y = 0;
 
         connectedCallback() {
-            // TODO: err handling
+            const placement = this.dataset.placement as PopoverPlacement;
+
+            if (this.placements.includes(placement))
+                this.placement = placement;
+
             this.triggerEl = this.children[0] as HTMLElement;
-            this.contentEl = this.children[1] as HTMLElement;
+            const contentEl = this.querySelector('.popover-content');
+
+            if (!contentEl) {
+                console.error('Popover: Malformed popover, content is missing?');
+                return;
+            }
+
+            this.contentEl = contentEl as HTMLElement;
+
+            if (this.triggerEl === this.contentEl) {
+                console.error('Popover: Malformed popover, trigger is missing?');
+                return;
+            }                
 
             this.triggerEl.addEventListener('click', e => this.trigger(e));
             this.hideOnFocusLoss();
@@ -49,7 +68,7 @@ const { ...props } = Astro.props;
             this.y = 0;
 
             this.show();
-            this.offsetPosition('bottom');
+            this.offsetPosition(this.placement);
             this.contentEl.focus();
         }
 
@@ -101,7 +120,7 @@ const { ...props } = Astro.props;
     customElements.define('f-popover', Popover);
 </script>
 
-<f-popover {...props}>
+<f-popover data-placement={placement}>
     <slot name="trigger"></slot>
     
     <div class="popover-content">

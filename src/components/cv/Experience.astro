@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content';
+import { shortDate } from '@helpers/date';
 
 interface Props {
     entry: CollectionEntry<'experience'>
@@ -16,9 +17,9 @@ const { Content } = await entry.render();
     </div>
     
     <span>
-        {entry.data.startDate.toLocaleDateString('en-GB', { month: 'short', year: 'numeric' })} 
+        {shortDate(entry.data.startDate)} 
         &mdash; 
-        {entry.data.endDate?.toLocaleDateString('en-GB', { month: 'short', year: 'numeric' }) ?? 'Present'}
+        {entry.data.endDate ? shortDate(entry.data.endDate) : 'Present'}
     </span>
 </article>
 

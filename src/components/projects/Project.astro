@@ -1,0 +1,60 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+    entry: CollectionEntry<'projects'>
+}
+
+const { entry } = Astro.props;
+---
+
+<a class="project" href={`/projects/${entry.slug}`}>
+    <h5 class="project-title">{entry.data.name}</h5>
+    
+    <div class="spacer"></div>
+
+    <p class="project-description">{entry.data.blurb}</p>
+</a>
+
+<style define:vars={{ 'project-thumbnail': `url(${entry.data.thumbnail})` }}>
+    .project {
+        background-image: var(--project-thumbnail);
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+
+        display: flex;
+        flex-direction: column;
+        height: 15em;
+
+        text-decoration: none;
+        color: var(--text-color);
+        cursor: pointer;
+
+        transition: transform 0.15s ease-out;
+
+        &:focus-visible { outline: var(--d-white-color) solid 3px; }
+
+        &:hover, &:focus-visible {
+            transition: transform 0.2s ease-in;
+            transform: scale(0.95);
+        }
+        
+        .spacer { flex: 1; }
+
+        .project-title, .project-description {
+            padding: 0.5rem 1rem;
+        }
+
+        .project-title {
+            background-color: var(--primary-color);
+            border-bottom: 2px solid var(--d-white-color);
+        }
+
+        .project-description {
+            /* text-shadow: 0 1px 2px #000000, 0 1px 2px #000000; */
+            background: linear-gradient(to bottom, transparent -10%, rgba(var(--black-color-rgb), 0.6) 100%);
+            color: var(--white-color);
+        }
+    }
+</style>

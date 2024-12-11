@@ -1,0 +1,38 @@
+---
+import { Image } from 'astro:assets';
+
+export interface CarouselItemProps extends Props {}
+
+interface Props {
+    src: string;
+    alt?: string;
+    fit?: 'contain' | 'cover' | 'fill'
+}
+
+const { src, alt, fit } = Astro.props;
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/**/*.{webp,gif}');
+
+if (!images[src]) 
+    throw new Error(`"${src}" does not exist in glob: "src/assets/*.{webp,gif}"`);
+---
+
+<div>
+    <Image src={images[src]()} alt={alt ?? null}></Image>
+</div>
+
+<style define:vars={{ 'carousel-item-fit': fit ?? 'contain' }}>
+    div {
+        display: none;
+        width: 100%;
+        text-align: center;
+
+        &.active { display: block; }       
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: var(--carousel-item-fit);
+            border-radius: var(--b-radius) var(--b-radius) 0 0;
+        }
+    }
+</style>

@@ -50,8 +50,6 @@ const projects = defineCollection({
 	schema: z.object({
 		name: z.string(),
 		blurb: z.string(),
-		source: z.string().optional(),
-		demo: z.string().optional(),
 		startDate: z
 			.string()
 			.or(z.date())
@@ -59,7 +57,59 @@ const projects = defineCollection({
 		lastUpdated: z
 			.string()
 			.or(z.date())
-			.transform(v => new Date(v))
+			.transform(v => new Date(v)),
+		thumbnail: z.string(),
+		images: z
+			.array(z
+				.object({
+					src: z.string(),
+					alt: z.string().optional(),
+					fit: z
+						.union([
+							z.literal('contain'),
+							z.literal('cover'),
+							z.literal('fill')
+						])
+						.optional()
+				})
+				.or(z.string())
+				.transform(v => typeof v === 'string' ? { src: v } : v)
+			)
+			.optional(),
+		links: z
+			.object({
+				source: z.string().optional(),
+				demo: z.string().optional(),
+				live: z.string().optional(),
+				additional: z
+					.array(z
+						.object({
+							label: z.string(),
+							url: z.string(),					
+							icon: z
+								.object({
+									name: z.string(),
+									size: z.number().or(z.string()).optional(),
+									width: z.number().or(z.string()).optional(),
+									height: z.number().or(z.string()).optional()
+								})
+								.or(z.string())
+								.optional(),
+							type: z
+								.union([
+									z.literal('internal'),
+									z.literal('external'),
+									z.literal(null)
+								])
+								.optional()
+								.default('external'),
+							btn: z.boolean().optional().default(true),
+						})
+					)
+					.optional()
+			})
+			.optional(),
+		hidden: z.boolean().optional().default(false)
 	}),
 });
 

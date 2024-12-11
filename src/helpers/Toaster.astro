@@ -1,0 +1,79 @@
+---
+import { Icon } from "astro-icon/components";
+import type { ToastStyle } from "./toast";
+
+const icons: Record<ToastStyle, string> = {
+    success: 'ri:checkbox-circle-fill',
+    warning: 'ri:alert-fill',
+    error: 'ri:error-warning-fill',
+    info: 'ri:information-fill'
+};
+
+const styles: ToastStyle[] = [ 'success', 'warning', 'error', 'info' ];
+---
+
+<script src="@helpers/toast.ts"></script>
+
+<section id="toaster">
+    {styles.map(style => 
+        <template id={`toaster-${style}`}>
+            <article class="toast">
+                <Icon class={style} name={icons[style]} size={24}></Icon>
+            </article>
+        </template>
+    )}
+</section>
+
+<style>
+    @keyframes fade-out { to { opacity: 0; } }
+    @keyframes slide-in { from { transform: translateY(100vh); } }
+
+    section {
+        position: fixed;
+        left: 50%;
+        bottom: 5%;
+        transform: translate(-50%, -5%);
+        
+        display: grid;
+        place-items: center;
+        gap: 0.2rem;
+    }
+
+    .toast {
+        font-size: var(--small-font-size);
+        border: 1px solid var(--accent-color);
+        border-radius: var(--b-radius);
+        padding: 0.5rem;
+
+        color: var(--d-white-color);
+
+        /* background-color: #004153; */
+        background-color: var(--primary-color);
+
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+
+        width: min-content;
+        text-wrap: nowrap;
+
+        animation:
+            slide-in 0.3s ease-in,
+            fade-out 0.2s ease 3s;
+
+        .success { color: #00d68f; }
+        .warning { color: #d8c51a; }
+        .error { color: #e22e39; }
+        .info { color: #229df3; }
+
+        z-index: 2;
+        pointer-events: none;
+    }
+
+    :global([data-theme="light"]) {
+        .toast {
+            .success { color: #01a76f; }
+            .warning { color: #f3de1d; }
+        }
+    }
+</style>

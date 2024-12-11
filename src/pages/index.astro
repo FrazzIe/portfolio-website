@@ -1,75 +1,86 @@
 ---
-import Hero from '@components/Hero.astro';
-import Link from '@components/Link.astro';
-import Section from '@components/Section.astro';
-import SkillList from '@components/SkillList.astro';
-import Education from '@components/cv/Education.astro';
-import Experience from '@components/cv/Experience.astro';
-import Project from '@components/cv/Project.astro';
-import { getCollection } from 'astro:content';
-import Layout from '../layouts/Layout.astro';
-
-const experiences = await getCollection('experience');
-const education = await getCollection('education');
-const projects = await getCollection('projects');
+import Hero from "@components/Hero.astro";
+import Link from "@components/Link.astro";
+import MailButton from "@components/MailButton.astro";
+import ThemeButton from "@components/ThemeButton.astro";
+import Layout from "@layouts/Layout.astro";
 ---
 
-<Layout 
-    title="fwatt | Home"
-    description="A web-based version of Fraser Watt's Curriculum Vitae"
-    banner="📢 10/2024 &mdash; Portfolio under construction, more coming soon 👷🚧🏗️">
-	<Hero 
-		title="Fraser Watt" 
-		subtitle='Full-stack Developer'
-        socials>
-		<Link href="mailto:fwatt@proton.me?subject=Job%20Opportunity" external icon="ri:mail-fill">Mail</Link>
-		<Link href="https://linkedin.com/in/fraser-w" external icon="ri:linkedin-box-fill">Linkedin</Link>
-		<Link href="https://git.fwatt.dev" external icon="ri:github-fill">GitHub</Link>
-	</Hero>
+<Layout title="" description="" header={false} flex>
+    <div class="container">
+        <Hero title="Fraser Watt">
+            <div slot="subtitle" class="subtitle-slider">
+                <span>Full-stack Developer</span>
+                <span>Lego enthusiast</span>
+                <span>Gaming buff</span>
+                <span>Homelab enjoyer</span>
+            </div>
+        </Hero>
 
-    <Section title="Skills">
-        <SkillList></SkillList>
-    </Section>
+        <nav>
+            <Link url="/projects">Projects</Link>
+            <Link url="/cv">CV / Résumé</Link>
+        </nav>
 
-	<Section title="Experience">
-		{experiences.map(e => <Experience entry={e}></Experience>)}
-	</Section>
-
-    <Section title="Education">
-		{
-            education
-                .sort((a, b) => a.data.endDate.valueOf() > b.data.endDate.valueOf() ? -1 : 1)
-                .map(e => <Education entry={e}></Education>)
-        }
-	</Section>
-
-    <Section title="Projects">
-        <div class="projects">
-            {
-                projects
-                    .sort((a, b) => a.data.startDate.valueOf() > b.data.startDate.valueOf() ? -1 : 1)
-                    .slice(0, 9)
-                    .map(e => <Project entry={e}></Project>)
-            }
+        <div class="socials">
+            <MailButton></MailButton>
+            <Link url="https://linkedin.com/in/fraser-w" icon="ri:linkedin-box-fill" aria-label="LinkedIn" />
+            <Link url="https://git.fwatt.dev" icon="ri:github-fill" aria-label="GitHub" />
         </div>
-
-	</Section>
-
-    <Section title="About">
-        <p style="text-align: justify;">
-            I am a full stack developer looking to take the next step in 
-			my career and further advance my skills in the industry. I hope to contribute 
-			to new or existing projects with a team of like-minded individuals. 
-			I also hope to provide value to projects by applying my skills and 
-			dedicating time to improve my capabilities both technically and professionally.
-        </p>
-    </Section>
+    </div>
 </Layout>
 
 <style>
-    .projects {
+    .container {
+        display: grid;
+        place-items: center;
+        place-content: center;
+
+        flex: 1;
+        gap: 1.5rem;
+    }
+
+    @keyframes slide {
+        10% { margin-top: 0; } 25% { margin-top: -20px; }
+        30% { margin-top: -20px; } 40% { margin-top: -40px; }
+        60% { margin-top: -40px; } 70% { margin-top: -60px; }
+        85% { margin-top: -60px; } 95% { margin-top: 0; }
+        100% { margin-top: 0; }
+    }
+
+    .subtitle-slider {
+        height: 20px;
+        overflow: hidden;
+        position: relative;
+
+        span { display: block; }
+
+        span:first-child {
+            animation: slide 6s linear infinite;
+        }
+    }
+
+    nav {
         display: flex;
-        flex-direction: column;
-        gap: 0.25rem;
+        gap: 1rem;
+
+        a {
+            text-decoration: none;
+            border-bottom: 1px solid var(--d-white-color);
+            padding-bottom: 1px;
+            font-weight: 500;
+        }
+
+        font-size: var(--h5-font-size);
+    }
+
+    .socials {
+        display: flex;
+        gap: 1rem;
+        padding-top: 1rem;
+    }
+
+    :global(footer) {
+        justify-content: center;
     }
 </style>

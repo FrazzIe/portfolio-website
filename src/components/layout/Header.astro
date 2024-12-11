@@ -1,40 +1,167 @@
 ---
-import NavItem from './NavItem.astro';
-import Navbar from './Navbar.astro';
+import Button from '@components/Button.astro';
+import Link from '@components/Link.astro';
+import ThemeButton from '@components/ThemeButton.astro';
+import { Icon } from 'astro-icon/components';
+import type { ComponentProps } from 'astro/types';
 
 interface Props {
-
+    navItems?: ComponentProps<typeof Link>[];
 }
 
-const {  } = Astro.props;
+const { navItems } = Astro.props;
 ---
 
 <header>
-    <span>
-        <slot name="title"></slot>
-    </span>
+    <div class="title">
+        <Button id="nav-btn" aria-label="Toggle navigation menu">
+            <Icon class="nav-btn-open" name="ri:menu-fill" size={20}></Icon>
+            <Icon class="nav-btn-close" name="ri:close-fill" size={20}></Icon>
+        </Button>
 
-    <Navbar>
-        <slot name="nav"></slot>
-    </Navbar>
+        <slot/>
+    </div>
 
-    <slot name="action"></slot>
+
+
+    <nav id="nav-content">
+        {navItems?.map(item => <Link {...item}></Link>)}
+    </nav>
+
+    <div class="actions">
+
+        <ThemeButton></ThemeButton>
+    </div>
 </header>
+
+<script>
+    const navBtn = document.getElementById('nav-btn');
+    const navContent = document.getElementById('nav-content');
+
+    navBtn?.addEventListener('click', _ => {
+        navContent?.classList.toggle('expanded');
+    });
+</script>
 
 <style>
     header {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        gap: 1rem;
-        padding: 0.5rem 1rem;
-        /* border-bottom: 0.25rem solid var(--secondary-color); */
-        padding-bottom: 2rem;
+        display: grid;
+        grid-template-columns: 0fr 1fr 0fr;
+        grid-template-rows: 1fr;
+        grid-template-areas: "title nav actions";
 
-        span {
-            font-size: 2.5rem;
-            margin-right: auto;
-            color: var(--primary-color);
+        gap: 0.5rem 2rem;
+        padding: 0.5rem 0;
+
+        align-items: center;
+    } 
+
+    .title {
+        grid-area: title;
+        font-size: 2.5rem;
+        margin-right: auto;
+        color: var(--secondary-color);
+
+        margin-left: 1rem;
+
+        display: flex;
+        gap: 0.5rem;
+        place-items: center;
+
+        #nav-btn { display: none; }
+    }
+
+    .actions {
+        display: flex;
+        gap: 1rem;
+
+        grid-area: actions;
+
+        justify-self: right;
+        align-items: center;
+        margin-right: 1rem;
+
+        
+    }
+
+    .nav-btn-close { display: none; }
+
+    nav {
+        grid-area: nav;
+
+        display: flex;
+        gap: 1.5rem;
+
+        a {
+            text-decoration: none;
+            font-weight: 500;
+            
+            padding: 0.2rem 0;
+            border: 2px solid transparent;
+            border-width: 2px 0px;
+
+            &.active, &:hover {
+                border-bottom-color: var(--secondary-color);
+            }
+        }
+    }
+
+    @media only screen and (max-width: 768px) {
+        header {
+            grid-template-areas: 
+                "title actions actions"
+                "nav nav nav";
+        
+            padding-bottom: 0;
+
+            &:has(nav.expanded) { 
+                border-bottom: none;
+                padding-bottom: 0;
+
+                .nav-btn-close { display: block !important; }
+                .nav-btn-open { display: none; }
+            }
+        }    
+        
+        .title {
+            #nav-btn { display: inline-flex; }
+        }
+
+        .actions { 
+            grid-column: span 2;
+        }
+
+        nav {
+            max-height: 0;
+            transition: max-height 0.25s ease-out;
+
+            overflow: hidden;
+            flex-direction: column;
+            gap: 0;
+
+            visibility: hidden;
+
+            &.expanded {               
+                max-height: 100vh; 
+                transition: max-height 0.35s ease-in;
+                visibility: visible;
+            }
+
+            a { 
+                padding: .8rem;
+                border: none;
+
+                &:first-child { border-top: 1px solid var(--secondary-color); }
+
+                border-left: 5px solid transparent;                
+
+                &.active, &:hover {                    
+                    border-left: 5px solid var(--secondary-color);
+                    background: linear-gradient(-90deg, transparent 0%, var(--primary-color) 100%);
+                }
+            }
+
+            button { margin: 1rem; }
         }
     }
 </style>

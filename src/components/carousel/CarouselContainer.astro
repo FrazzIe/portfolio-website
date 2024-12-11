@@ -1,0 +1,22 @@
+---
+import CarouselItem, { type CarouselItemProps } from './CarouselItem.astro'
+
+interface Props {
+    items: CarouselItemProps[];
+}
+
+const { items } = Astro.props;
+---
+
+<div carousel-container>
+    {items.map(i => <CarouselItem {...i}></CarouselItem>)}
+</div>
+
+<style>
+    div {
+        display: flex;
+        flex: 1;
+        overflow: hidden;
+        justify-content: center;
+    }
+</style>

@@ -1,0 +1,52 @@
+---
+import { Icon } from "astro-icon/components";
+import Button from "./Button.astro";
+---
+
+<Button id="theme-switcher">
+    <Icon class="light" name="ri:sun-fill" size={20}></Icon>
+    <Icon class="dark" name="ri:moon-fill" size={20}></Icon>
+</Button>
+
+<style>
+    .light { display: none; }
+
+    :global([data-theme="light"]) {
+        .dark { display: none; }
+        .light { display: block; }
+    }
+
+    :global([data-theme="dark"]) {
+        .dark { display: block; }
+        .light { display: none; }
+    }
+
+</style>
+
+<script>
+    type Theme = 'light' | 'dark';
+
+    const themes: Theme[] = [ 'light', 'dark' ];
+    const storageKey = 'theme';
+
+    function getTheme(): Theme {
+        const storedTheme = localStorage?.getItem(storageKey) as Theme;
+
+        if (themes.includes(storedTheme))
+            return storedTheme;
+
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'; 
+    }
+
+    function setTheme(theme: Theme, save = true) {
+        save && localStorage?.setItem(storageKey, theme);
+        document.documentElement.dataset.theme = theme;
+    }
+
+    setTheme(getTheme(), false);    
+
+    document.getElementById('theme-switcher')?.addEventListener('click', () => {
+        const isDark = (document.documentElement.dataset.theme ?? getTheme()) == 'dark';
+        setTheme(isDark ? 'light' : 'dark');
+    });
+</script>

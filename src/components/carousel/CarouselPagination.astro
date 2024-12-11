@@ -1,0 +1,42 @@
+---
+interface Props {
+    pages: number;
+}
+
+const { pages } = Astro.props;
+---
+
+<script src="./carousel-paginator.component.ts"></script>
+
+<f-carousel-paginator>
+    {Array.from({ length: pages }).map((_, idx) => <button aria-label={`Page ${idx + 1}`}></button>)}
+</f-carousel-paginator>
+
+<style>
+    f-carousel-paginator {
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+        padding: 0.5rem;
+        flex-wrap: wrap;
+        
+        z-index: 1;
+        align-self: center;
+
+        button {
+            border: none;
+
+            font-size: var(--default-font-size);
+            box-sizing: border-box;
+
+            width: 2rem;
+            height: 0.5rem;
+
+            background-color: rgba(var(--d-white-color-rgb), 0.7);
+
+            &.active { background-color: var(--d-white-color); }
+            &:hover { background-color: rgba(var(--d-white-color-rgb), 0.9); }
+            &:focus-visible { outline: var(--accent-color) auto 2px; }
+        }
+    }
+</style>

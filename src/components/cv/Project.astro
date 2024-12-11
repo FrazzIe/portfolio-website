@@ -1,6 +1,7 @@
 ---
 import Link from '@components/Link.astro';
 import type { CollectionEntry } from 'astro:content';
+import { shortDate } from '@helpers/date';
 
 interface Props {
     entry: CollectionEntry<'projects'>
@@ -10,9 +11,8 @@ const { entry } = Astro.props;
 ---
 
 <article>
-    <!-- <li><Link href={`/projects/${entry.slug}`}>{entry.data.name}</Link>: {entry.data.blurb}</li> -->
-    <li><u>{entry.data.name}</u>: {entry.data.blurb}</li>
-    <small>{entry.data.startDate.toLocaleDateString('en-GB', { month: 'short', year: 'numeric' })}</small>
+    <li><Link url={`/projects/${entry.slug}`} type="internal">{entry.data.name}</Link>: {entry.data.blurb}</li>
+    <small>{shortDate(entry.data.startDate)}</small>
 </article>
 
 <style>

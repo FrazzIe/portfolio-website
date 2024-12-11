@@ -1,25 +1,30 @@
 ---
-interface Props {
+import { Icon } from 'astro-icon/components';
+import type { HTMLAttributes } from 'astro/types';
+import Heading from './heading/Heading.astro';
+import { slugify } from '@helpers/slugify';
+
+interface Props extends HTMLAttributes<"section"> {
     title: string;
+    heading?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5';
     gap?: string;
 }
 
-const { title, gap } = Astro.props;
+const { title, heading, gap, ...props } = Astro.props;
 ---
-<section style={gap ? `gap: ${gap};` : ''}>
-    <h2 class="title">{title}</h2>
-    <slot></slot>
+<section {...props}>
+    <Heading is={heading ?? 'h2'} slug={slugify(title)} underline>{title}</Heading>
+    <slot />
 </section>
 
-<style>
+<style define:vars={{ 'section-gap': gap }}>
     section {
         display: flex;
         flex-direction: column;
-        gap: 1rem;
+        gap: var(--section-gap, 1rem);
     }
 
     .title {
-        color: var(--text-color);
-        border-bottom: 5px solid var(--secondary-color);
+        border-bottom: 5px solid var(--primary-color);
     }
 </style>

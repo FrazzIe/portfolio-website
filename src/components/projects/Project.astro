@@ -1,4 +1,5 @@
 ---
+import { getImage } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
 
 interface Props {
@@ -6,6 +7,7 @@ interface Props {
 }
 
 const { entry } = Astro.props;
+const thumbnail = await getImage({ src: entry.data.thumbnail })
 ---
 
 <a class="project" href={`/projects/${entry.slug}`}>
@@ -16,7 +18,7 @@ const { entry } = Astro.props;
     <p class="project-description">{entry.data.blurb}</p>
 </a>
 
-<style define:vars={{ 'project-thumbnail': `url(${entry.data.thumbnail})` }}>
+<style define:vars={{ 'project-thumbnail': `url(${thumbnail.src})` }}>
     .project {
         background-image: var(--project-thumbnail);
         background-size: cover;

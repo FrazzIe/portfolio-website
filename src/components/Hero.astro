@@ -49,6 +49,10 @@ const { title, subtitle, socials } = Astro.props;
 
         .title {
             font-size: var(--h1-font-size);
+
+            @media only screen and (max-width: 300px) {
+                font-size: calc(var(--h1-font-size) - 0.5rem);
+            }
         }
 
 		.subtitle {

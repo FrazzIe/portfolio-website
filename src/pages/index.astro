@@ -5,7 +5,12 @@ import MailButton from "@components/MailButton.astro";
 import Layout from "@layouts/Layout.astro";
 ---
 
-<Layout title="" description="" header={false} flex>
+<Layout 
+    title="fwatt | Home" 
+    description="Fraser Watt's portfolio"
+    og={{ type: 'profile' }}
+    header={false} 
+    flex>
     <div class="container">
         <Hero title="Fraser Watt">
             <div slot="subtitle" class="subtitle-slider">

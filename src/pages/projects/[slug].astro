@@ -1,7 +1,7 @@
 ---
-import Carousel from "@components/carousel/Carousel.astro";
-import Heading from "@components/heading/Heading.astro";
-import Link from "@components/Link.astro";
+import Heading from "@components/shared/heading/Heading.astro";
+import Link from "@components/shared/Link.astro";
+import Carousel from "@components/shared/carousel/Carousel.astro";
 import Layout from "@layouts/Layout.astro";
 import { getCollection } from "astro:content";
 
@@ -21,7 +21,7 @@ const { Content } = await entry.render();
 ---
 
 <Layout title={`Projects | ${entry.data.name}`} description={entry.data.blurb}>
-    <Heading underline>{entry.data.name}</Heading>
+    <Heading as="h1" underline>{entry.data.name}</Heading>
 
     {entry.data.images && <Carousel items={entry.data.images}></Carousel>}
 

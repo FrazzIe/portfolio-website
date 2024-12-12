@@ -1,8 +1,9 @@
 ---
-import Hero from "@components/Hero.astro";
-import Link from "@components/Link.astro";
-import MailButton from "@components/MailButton.astro";
+import Hero from "@components/layout/Hero.astro";
+import Link from "@components/shared/Link.astro";
+import MailButton from "@components/shared/MailButton.astro";
 import Layout from "@layouts/Layout.astro";
+import { navigation, roles, socials } from "src/site.config";
 ---
 
 <Layout 
@@ -14,22 +15,18 @@ import Layout from "@layouts/Layout.astro";
     <div class="container">
         <Hero title="Fraser Watt">
             <div slot="subtitle" class="subtitle-slider">
-                <span>Full-stack Developer</span>
-                <span>Lego enthusiast</span>
-                <span>Gaming buff</span>
-                <span>Homelab enjoyer</span>
+                {roles.map(role => <span>{role}</span>)}
             </div>
         </Hero>
 
         <nav>
-            <Link url="/projects">Projects</Link>
-            <Link url="/cv">CV / Résumé</Link>
+            {navigation.filter(i => i.url !== '/').map(i => <Link {...i}/>)}
         </nav>
 
         <div class="socials">
             <MailButton></MailButton>
-            <Link url="https://linkedin.com/in/fraser-w" icon="ri:linkedin-box-fill" aria-label="LinkedIn" />
-            <Link url="https://git.fwatt.dev" icon="ri:github-fill" aria-label="GitHub" />
+            <Link url={socials.linkedin} icon="ri:linkedin-box-fill" aria-label="LinkedIn" />
+            <Link url={socials.github} icon="ri:github-fill" aria-label="GitHub" />
         </div>
     </div>
 </Layout>

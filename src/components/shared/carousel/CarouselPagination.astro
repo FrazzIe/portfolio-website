@@ -6,7 +6,7 @@ interface Props {
 const { pages } = Astro.props;
 ---
 
-<script src="./carousel-paginator.component.ts"></script>
+<script src="./carousel-paginator.ts"></script>
 
 <f-carousel-paginator>
     {Array.from({ length: pages }).map((_, idx) => <button aria-label={`Page ${idx + 1}`}></button>)}

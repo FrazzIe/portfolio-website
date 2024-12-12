@@ -1,12 +1,12 @@
-import { getCollection } from "astro:content";
+import type { OpenGraphImagePages } from '@helpers/models/ogImagePage';
 import { OGImageRoute } from 'astro-og-canvas';
+import { getCollection } from "astro:content";
+import { ogImagePages } from 'src/site.config';
 
 const projects = await getCollection('projects');
 
-const pages: { [path: string]: any } = {
-    home: { title: 'Home', description: 'Fraser Watt\'s portfolio', logo: 'home' },
-    projects: { title: 'Projects', description: 'Fraser Watt\'s project showcase', logo: 'projects' },
-    cv: { title: 'Curriculum Vitae', description: 'Fraser Watt\'s Curriculum Vitae', logo: 'cv' },
+const pages: OpenGraphImagePages = {
+    ...ogImagePages,
     ...Object.fromEntries(projects.map(({ slug, data }) => [ `/projects/${slug}`, { title: data.name, description: data.blurb, logo: 'projects' }]))
 }
 

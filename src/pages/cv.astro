@@ -1,14 +1,15 @@
 ---
-import Hero from '@components/Hero.astro';
-import Link from '@components/Link.astro';
-import Section from '@components/Section.astro';
-import SkillList from '@components/SkillList.astro';
-import Education from '@components/cv/Education.astro';
-import Experience from '@components/cv/Experience.astro';
-import Project from '@components/cv/Project.astro';
+import SkillList from '@components/collection/SkillList.astro';
+import Hero from '@components/layout/Hero.astro';
+import Section from '@components/layout/Section.astro';
+import Education from '@components/pages/cv/Education.astro';
+import Experience from '@components/pages/cv/Experience.astro';
+import Project from '@components/pages/cv/Project.astro';
+import Link from '@components/shared/Link.astro';
+import MailButton from '@components/shared/MailButton.astro';
 import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
-import MailButton from '@components/MailButton.astro';
+import { fullname, role, socials } from 'src/site.config';
 
 const experiences = await getCollection('experience');
 const education = await getCollection('education');
@@ -18,13 +19,10 @@ const projects = await getCollection('projects');
 <Layout 
     title="fwatt | CV"
     description="Fraser Watt's Curriculum Vitae, a simplified one page summary of skills, experience, education and projects.">
-	<Hero 
-		title="Fraser Watt" 
-		subtitle='Full-stack Developer'
-        socials>
+	<Hero title={fullname}  subtitle={role} socials>
 		<MailButton><u>Mail</u></MailButton>
-		<Link url="https://linkedin.com/in/fraser-w" icon="ri:linkedin-box-fill" type="external">LinkedIn</Link>
-		<Link url="https://git.fwatt.dev" icon="ri:github-fill" type="external">GitHub</Link>
+		<Link url={socials.linkedin} icon="ri:linkedin-box-fill" type="external">LinkedIn</Link>
+		<Link url={socials.github} icon="ri:github-fill" type="external">GitHub</Link>
 	</Hero>
 
     <Section title="Skills">

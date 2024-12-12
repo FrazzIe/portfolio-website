@@ -1,13 +1,13 @@
 ---
 import Button from "./Button.astro";
-import Menu from "./Menu.astro";
-import MenuItem from "./MenuItem.astro";
+import Menu from "./menu/Menu.astro";
+import MenuItem from "./menu/MenuItem.astro";
 import Popover from "./Popover.astro";
 ---
 
 <script>
-    import { clipboard } from "@helpers/clipboard";
-import { createToast } from "@helpers/toast";
+import { clipboard } from "@helpers/clipboard";
+import { createToast } from "@components/shared/toast/createToast";
 
     const copyButtons = document.querySelectorAll('button[data-action="copy"]') as NodeListOf<HTMLButtonElement>;
 

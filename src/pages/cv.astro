@@ -1,14 +1,14 @@
 ---
-import Hero from '@components/Hero.astro';
-import Link from '@components/Link.astro';
-import Section from '@components/Section.astro';
-import SkillList from '@components/SkillList.astro';
-import Education from '@components/cv/Education.astro';
-import Experience from '@components/cv/Experience.astro';
-import Project from '@components/cv/Project.astro';
+import SkillList from '@components/collection/SkillList.astro';
+import Hero from '@components/layout/Hero.astro';
+import Section from '@components/layout/Section.astro';
+import Education from '@components/pages/cv/Education.astro';
+import Experience from '@components/pages/cv/Experience.astro';
+import Project from '@components/pages/cv/Project.astro';
+import Link from '@components/shared/Link.astro';
+import MailButton from '@components/shared/MailButton.astro';
 import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
-import MailButton from '@components/MailButton.astro';
 
 const experiences = await getCollection('experience');
 const education = await getCollection('education');

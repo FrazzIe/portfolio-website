@@ -1,0 +1,27 @@
+---
+import type { Polymorphic } from "astro/types";
+import HeadingAnchor from "./HeadingAnchor.astro";
+
+type Props<HeadingTag extends 'h1' | 'h2' | 'h3' | 'h4' | 'h5'> = Polymorphic<{ as: HeadingTag }> & {
+    label?: string;
+    slug?: string;
+    underline?: boolean;
+};
+
+const { as: HeadingTag, label, slug, underline, ...props } = Astro.props;
+---
+
+<HeadingTag id={slug} class:list={[ 'anchor-head', { underline } ]} {...props}>
+    <slot>{label && label}</slot>
+    {slug && <HeadingAnchor slug={slug}></HeadingAnchor>}
+</HeadingTag>
+
+<style>
+    h1, h2 {
+        overflow-wrap: break-word;
+    }
+
+    .underline {
+        border-bottom: 5px solid var(--primary-color);
+    }    
+</style>

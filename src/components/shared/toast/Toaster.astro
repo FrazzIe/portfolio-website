@@ -1,6 +1,6 @@
 ---
 import { Icon } from "astro-icon/components";
-import type { ToastStyle } from "./toast";
+import type { ToastStyle } from "./createToast";
 
 const icons: Record<ToastStyle, string> = {
     success: 'ri:checkbox-circle-fill',
@@ -12,7 +12,7 @@ const icons: Record<ToastStyle, string> = {
 const styles: ToastStyle[] = [ 'success', 'warning', 'error', 'info' ];
 ---
 
-<script src="@helpers/toast.ts"></script>
+<script src="./createToast.ts"></script>
 
 <section id="toaster">
     {styles.map(style => 

@@ -1,7 +1,7 @@
 ---
 import { slugify } from '@helpers/slugify';
 import type { HTMLAttributes } from 'astro/types';
-import Heading from './heading/Heading.astro';
+import Heading from '@components/shared/heading/Heading.astro';
 
 interface Props extends HTMLAttributes<"section"> {
     title: string;
@@ -12,7 +12,7 @@ interface Props extends HTMLAttributes<"section"> {
 const { title, heading, gap, ...props } = Astro.props;
 ---
 <section {...props}>
-    <Heading is={heading ?? 'h2'} slug={slugify(title)} underline>{title}</Heading>
+    <Heading as={heading ?? 'h2'} slug={slugify(title)} underline>{title}</Heading>
     <slot />
 </section>
 

@@ -1,5 +1,5 @@
 import { addTouchEventListener } from "@helpers/touch";
-import { CarouselPaginator, type CarouselChangedEvent } from "./carousel-paginator.component";
+import { CarouselPaginator, type CarouselChangedEvent } from "./carousel-paginator";
 
 class Carousel extends HTMLElement {
     container: HTMLDivElement | null = this.querySelector('[carousel-container]');

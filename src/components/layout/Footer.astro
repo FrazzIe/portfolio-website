@@ -1,15 +1,15 @@
 ---
-interface Props {
-
-}
-
-const {  } = Astro.props;
+import { fullname } from 'src/site.config';
 
 const year = new Date().getFullYear();
 ---
 
+<script is:inline data-astro-rerun>
+    document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
 <footer>
-    <span class="copy">&copy; Fraser Watt {year}.</span>
+    <span class="copy">&copy; {fullname} <span id="year">{year}</span>.</span>
 </footer>
 
 
@@ -23,7 +23,7 @@ const year = new Date().getFullYear();
 
         margin-top: auto;
 
-        .copy {
+        .copy, #year {
             font-family: monospace;
         }
     }

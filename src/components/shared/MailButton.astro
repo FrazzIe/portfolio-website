@@ -1,4 +1,5 @@
 ---
+import { socials } from "src/site.config";
 import Button from "./Button.astro";
 import Menu from "./menu/Menu.astro";
 import MenuItem from "./menu/MenuItem.astro";
@@ -34,8 +35,8 @@ import { createToast } from "@components/shared/toast/createToast";
         <slot></slot>
     </Button>
 
-    <Menu title="fwatt@proton.me">
-        <MenuItem as="button" label="Copy email" icon="ri:clipboard-fill" data-action="copy" data-copy="fwatt@proton.me"></MenuItem>
-        <MenuItem as="a" label="Open app" icon="ri:external-link-fill" href="mailto:fwatt@proton.me?subject=Job%20Opportunity"></MenuItem>
+    <Menu title={socials.email.address}>
+        <MenuItem as="button" label="Copy email" icon="ri:clipboard-fill" data-action="copy" data-copy={socials.email.address}></MenuItem>
+        <MenuItem as="a" label="Open app" icon="ri:external-link-fill" href={`mailto:${socials.email.mailto}`}></MenuItem>
     </Menu>
 </Popover>

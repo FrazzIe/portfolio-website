@@ -21,7 +21,7 @@ export const { getStaticPaths, GET } = OGImageRoute({
 		return path;
 	},
 
-    getImageOptions: (path, page) => ({
+    getImageOptions: (_, page) => ({
         title: page.title,
         description: page.description,
         format: 'WEBP',

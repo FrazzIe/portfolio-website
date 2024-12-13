@@ -1,5 +1,5 @@
 import Link from "@components/shared/Link.astro";
-import type { OpenGraphImagePage, OpenGraphImagePages } from "@helpers/models/ogImagePage";
+import type { OpenGraphImagePages } from "@helpers/models/ogImagePage";
 import type { ComponentProps } from "astro/types";
 
 export const navigation: ComponentProps<typeof Link>[] = [

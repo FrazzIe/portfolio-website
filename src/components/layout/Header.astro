@@ -38,7 +38,7 @@ const { navItems } = Astro.props;
     const navBtn = document.getElementById('nav-btn');
     const navContent = document.getElementById('nav-content');
 
-    navBtn?.addEventListener('click', _ => {
+    navBtn?.addEventListener('click', () => {
         navContent?.classList.toggle('expanded');
     });
 </script>

@@ -1,7 +1,9 @@
+import icon from 'astro-icon';
 import { defineConfig } from 'astro/config';
-import icon from 'astro-icon';  
-import rehypeAutolinkHeadings from 'rehype-autolink-headings';
+import browserslist from "browserslist";
+import { resolveToEsbuildTarget } from "esbuild-plugin-browserslist";
 import { fromHtmlIsomorphic } from 'hast-util-from-html-isomorphic';
+import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypeSlug from 'rehype-slug';
 
 const anchorIcon = `
@@ -62,6 +64,11 @@ export default defineConfig({
                 ]               
             }
         })
-    ]
+    ],
+    vite: {
+        build: {
+            cssTarget: resolveToEsbuildTarget(browserslist())
+        }
+    },
 });
 

@@ -3,7 +3,7 @@ role: Application Developer
 org: RepOptim Ltd.
 startDate: '2022-05-22'
 endDate: '2023-11-30'
-order: 1
+order: 2
 ---
 
 - Implemented internationalisation (i18n) within an enterprise-grade web application in a robust and maintainable manner with language pluralisation and YAML-based translations.
